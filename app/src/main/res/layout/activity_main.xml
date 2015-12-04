@@ -76,6 +76,63 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/grid_calendar_top"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#CCCCCC"
+            android:gravity="center" >
+
+            <TextView
+                android:text="S"
+                android:textColor="#CC5555"
+                style="@style/DayOfWeek"/>
+
+            <TextView
+                android:text="M"
+                android:textColor="#AAAAAA"
+                style="@style/DayOfWeek"/>
+
+            <TextView
+                android:text="T"
+                android:textColor="#AAAAAA"
+                style="@style/DayOfWeek"/>
+
+            <TextView
+                android:text="W"
+                android:textColor="#AAAAAA"
+                style="@style/DayOfWeek"/>
+
+            <TextView
+                android:text="T"
+                android:textColor="#AAAAAA"
+                style="@style/DayOfWeek"/>
+
+            <TextView
+                android:text="F"
+                android:textColor="#AAAAAA"
+                style="@style/DayOfWeek"/>
+
+            <TextView
+                android:text="S"
+                android:textColor="#AAAAAA"
+                style="@style/DayOfWeek"/>
+
+            </LinearLayout>
+
+
+        <GridView
+            android:id="@+id/grid_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#CCCCCC"
+            android:horizontalSpacing="2dp"
+            android:numColumns="7"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dp"
+            android:gravity="center" />
+
     </LinearLayout>
 
 </RelativeLayout>
