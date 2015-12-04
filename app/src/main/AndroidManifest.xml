@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".Activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/IntroTheme">
             <intent-filter>
@@ -20,12 +20,16 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".DiaryActivity"
+            android:name=".Activity.ItemActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activity.DiaryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

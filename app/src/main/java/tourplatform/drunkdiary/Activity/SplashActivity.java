@@ -1,10 +1,12 @@
-package tourplatform.drunkdiary;
+package tourplatform.drunkdiary.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+
+import tourplatform.drunkdiary.R;
 
 /**
  * Created by orc12 on 2015-12-01.

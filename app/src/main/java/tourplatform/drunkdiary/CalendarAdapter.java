@@ -78,18 +78,19 @@ public class CalendarAdapter extends BaseAdapter {
     // create a new view for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = convertView;
-        TextView dayView;
+        TextView text_day;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
             LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.calendar_item, null);
 
         }
-        dayView = (TextView) v.findViewById(R.id.text_day);
+        text_day = (TextView) v.findViewById(R.id.text_day);
+        text_day.setTypeface(Font.GOTHAM_BOOK);
 
         // disable empty days from the beginning
         if (days[position].equals("")) {
-            dayView.setClickable(false);
-            dayView.setFocusable(false);
+            text_day.setClickable(false);
+            text_day.setFocusable(false);
         } else {
             // mark current day as focused
             if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
@@ -98,7 +99,7 @@ public class CalendarAdapter extends BaseAdapter {
 //                v.setBackgroundResource(R.drawable.list_item_background);
             }
         }
-        dayView.setText(days[position]);
+        text_day.setText(days[position]);
 
         // create date string for comparison
         String date = days[position];

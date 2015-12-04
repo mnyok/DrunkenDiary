@@ -1,17 +1,13 @@
-package tourplatform.drunkdiary;
+package tourplatform.drunkdiary.Activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CalendarView;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import tourplatform.drunkdiary.CalendarAdapter;
+import tourplatform.drunkdiary.Font;
+import tourplatform.drunkdiary.R;
+
 public class MainActivity extends Activity {
     public Calendar month;
     public CalendarAdapter adapter;
@@ -27,35 +27,31 @@ public class MainActivity extends Activity {
     public ArrayList<String> items; // container to store some random calendar items
     GridView gridView;
 
-
-
-
     RelativeLayout actionbar;
     TextView text_year;
     TextView text_month;
     TextView text_title;
+    TextView[] text_week;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //noinspection ResourceType
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        getSupportActionBar().setCustomView(R.layout.actionbar);
-
-        text_year= (TextView) findViewById(R.id.text_year);
-        text_month = (TextView) findViewById(R.id.text_month);
-        gridView = (GridView) findViewById(R.id.grid_calendar);
-        actionbar = (RelativeLayout) findViewById(R.id.actionbar);
-        text_title = (TextView) findViewById(R.id.actionbar_title);
+        assignView();
 
         Font.GOTHAM_BOOK = Typeface.createFromAsset(getAssets(), "Gotham-Book.otf");
         Font.GOTHAM_LIGHT = Typeface.createFromAsset(getAssets(), "Gotham-Light.otf");
+        Font.GOTHAM_MIDIUM = Typeface.createFromAsset(getAssets(), "Gotham-Medium.ttf");
         Font.NOTOSANSCJKKR_THIN = Typeface.createFromAsset(getAssets(), "NotoSansCJKkr-Thin.otf");
 
-        text_title.setTypeface(Font.GOTHAM_LIGHT);
+        text_title.setTypeface(Font.GOTHAM_MIDIUM);
         text_year.setTypeface(Font.GOTHAM_BOOK);
+        text_month.setTypeface(Font.GOTHAM_LIGHT);
+        for(TextView aText_week: text_week){
+            aText_week.setTypeface(Font.GOTHAM_LIGHT);
+        }
+
         month = Calendar.getInstance();
         onNewIntent(getIntent());
         items = new ArrayList<String>();
@@ -146,5 +142,22 @@ public class MainActivity extends Activity {
                 }
                 refreshCalendar();
         }
+    }
+
+    private void assignView(){
+        text_year= (TextView) findViewById(R.id.text_year);
+        text_month = (TextView) findViewById(R.id.text_month);
+        gridView = (GridView) findViewById(R.id.grid_calendar);
+        actionbar = (RelativeLayout) findViewById(R.id.actionbar);
+        text_title = (TextView) findViewById(R.id.actionbar_title);
+
+        text_week = new TextView[7];
+        text_week[0] = (TextView) findViewById(R.id.text_week_0);
+        text_week[1] = (TextView) findViewById(R.id.text_week_1);
+        text_week[2] = (TextView) findViewById(R.id.text_week_2);
+        text_week[3] = (TextView) findViewById(R.id.text_week_3);
+        text_week[4] = (TextView) findViewById(R.id.text_week_4);
+        text_week[5] = (TextView) findViewById(R.id.text_week_5);
+        text_week[6] = (TextView) findViewById(R.id.text_week_6);
     }
 }
