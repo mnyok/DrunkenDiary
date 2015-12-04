@@ -4,7 +4,7 @@
     <style name="IntroTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <!--<item name="android:windowBackground">@drawable/intro_tmp</item>-->
     </style>
 
     <!-- Base application theme. -->

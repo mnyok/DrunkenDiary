@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/bt_calendar"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:button="@null"
+        android:onClick="mOnClick"
+        android:scaleType="fitCenter"
+        android:src="@drawable/underbar_bt_tmp" />
+
+    <ImageButton
+        android:id="@+id/bt_diary"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:button="@null"
+        android:onClick="mOnClick"
+        android:scaleType="fitCenter"
+        android:src="@drawable/underbar_bt_tmp" />
+
+    <ImageButton
+        android:id="@+id/bt_statistic"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:button="@null"
+        android:onClick="mOnClick"
+        android:scaleType="fitCenter"
+        android:src="@drawable/underbar_bt_tmp" />
+</LinearLayout>
