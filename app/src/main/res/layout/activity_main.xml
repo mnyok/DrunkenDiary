@@ -7,6 +7,13 @@
     tools:context=".MainActivity">
 
     <include
+        android:id="@+id/actionbar"
+        layout="@layout/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true" />
+
+    <include
         android:id="@+id/bottombar"
         layout="@layout/bottombar"
         android:layout_width="match_parent"
@@ -14,6 +21,7 @@
         android:layout_alignParentBottom="true" />
 
     <LinearLayout
+        android:layout_below="@id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottombar"
@@ -39,7 +47,7 @@
                 android:button="@null"
                 android:onClick="mOnClick"
                 android:scaleType="fitCenter"
-                android:src="@drawable/bt_left_tmp" />
+                android:src="@drawable/bt_left" />
 
             <TextView
                 android:id="@+id/text_month"
@@ -72,7 +80,7 @@
                 android:button="@null"
                 android:onClick="mOnClick"
                 android:scaleType="fitCenter"
-                android:src="@drawable/bt_right_tmp" />
+                android:src="@drawable/bt_right" />
 
         </RelativeLayout>
 
@@ -81,44 +89,44 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#CCCCCC"
-            android:gravity="center" >
+            android:gravity="center">
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="S"
-                android:textColor="#CC5555"
-                style="@style/DayOfWeek"/>
+                android:textColor="#CC5555" />
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="M"
-                android:textColor="#AAAAAA"
-                style="@style/DayOfWeek"/>
+                android:textColor="#AAAAAA" />
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="T"
-                android:textColor="#AAAAAA"
-                style="@style/DayOfWeek"/>
+                android:textColor="#AAAAAA" />
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="W"
-                android:textColor="#AAAAAA"
-                style="@style/DayOfWeek"/>
+                android:textColor="#AAAAAA" />
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="T"
-                android:textColor="#AAAAAA"
-                style="@style/DayOfWeek"/>
+                android:textColor="#AAAAAA" />
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="F"
-                android:textColor="#AAAAAA"
-                style="@style/DayOfWeek"/>
+                android:textColor="#AAAAAA" />
 
             <TextView
+                style="@style/DayOfWeek"
                 android:text="S"
-                android:textColor="#AAAAAA"
-                style="@style/DayOfWeek"/>
+                android:textColor="#AAAAAA" />
 
-            </LinearLayout>
+        </LinearLayout>
 
 
         <GridView
@@ -127,11 +135,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#CCCCCC"
+            android:gravity="center"
             android:horizontalSpacing="2dp"
             android:numColumns="7"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="2dp"
-            android:gravity="center" />
+            android:verticalSpacing="2dp" />
 
     </LinearLayout>
 

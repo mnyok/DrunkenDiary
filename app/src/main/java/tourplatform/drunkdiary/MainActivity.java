@@ -1,7 +1,9 @@
 package tourplatform.drunkdiary;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,21 +13,27 @@ import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     public Calendar month;
     public CalendarAdapter adapter;
     public Handler handler;
     public ArrayList<String> items; // container to store some random calendar items
     GridView gridView;
 
+
+
+
+    RelativeLayout actionbar;
     TextView text_year;
     TextView text_month;
+    TextView text_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +41,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //noinspection ResourceType
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getSupportActionBar().setCustomView(R.layout.actionbar);
 
         text_year= (TextView) findViewById(R.id.text_year);
         text_month = (TextView) findViewById(R.id.text_month);
         gridView = (GridView) findViewById(R.id.grid_calendar);
+        actionbar = (RelativeLayout) findViewById(R.id.actionbar);
+        text_title = (TextView) findViewById(R.id.actionbar_title);
 
+        Font.GOTHAM_BOOK = Typeface.createFromAsset(getAssets(), "Gotham-Book.otf");
+        Font.GOTHAM_LIGHT = Typeface.createFromAsset(getAssets(), "Gotham-Light.otf");
+        Font.NOTOSANSCJKKR_THIN = Typeface.createFromAsset(getAssets(), "NotoSansCJKkr-Thin.otf");
 
+        text_title.setTypeface(Font.GOTHAM_LIGHT);
+        text_year.setTypeface(Font.GOTHAM_BOOK);
         month = Calendar.getInstance();
         onNewIntent(getIntent());
         items = new ArrayList<String>();
@@ -79,7 +94,17 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         handler.post(calendarUpdater); // generate some random calendar items
 
-        text_year.setText(android.text.format.DateFormat.format("yyyy", month));
+        String tmpMonth = android.text.format.DateFormat.format("yyyy", month).toString();
+        StringBuilder s = new StringBuilder();
+        s.append(tmpMonth.substring(0,1));
+        s.append(" ");
+        s.append(tmpMonth.substring(1,2));
+        s.append(" ");
+        s.append(tmpMonth.substring(2,3));
+        s.append(" ");
+        s.append(tmpMonth.substring(3,4));
+
+        text_year.setText(s.toString());
         text_month.setText(android.text.format.DateFormat.format("M", month));
     }
 
