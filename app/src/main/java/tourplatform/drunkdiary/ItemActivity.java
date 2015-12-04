@@ -1,14 +1,12 @@
 package tourplatform.drunkdiary;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 
 /**
- * Created by orc12 on 2015-12-04.
+ * Created by orc12 on 2015-12-05.
  */
-public class DiaryActivity extends AppCompatActivity {
+public class ItemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

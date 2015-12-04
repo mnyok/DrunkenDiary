@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView date = (TextView) v.findViewById(R.id.text_day);
                 if (date instanceof TextView && !date.getText().equals("")) {
 
-                    Intent intent = new Intent(MainActivity.this, DiaryActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ItemActivity.class);
                     String day = date.getText().toString();
                     if (day.length() == 1) {
                         day = "0" + day;
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 //                    setResult(RESULT_OK, intent);
 //                    finish();
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_up, android.R.anim.fade_out);
                 }
 
             }
