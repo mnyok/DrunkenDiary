@@ -1,5 +1,6 @@
 package tourplatform.drunkdiary.Activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -41,6 +42,11 @@ public class MainActivity extends FragmentActivity {
         init();
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void init(){
