@@ -15,7 +15,7 @@
             android:id="@+id/actionbar"
             layout="@layout/actionbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="50dp"
             android:layout_alignParentTop="true" />
 
         <FrameLayout
@@ -30,19 +30,20 @@
             android:layout_height="match_parent"
             android:layout_below="@id/actionbar" />
 
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/tab_bg"/>
 
-        <!--<TabWidget-->
-            <!--android:id="@android:id/tabs"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="55dp"-->
-            <!--android:layout_alignParentBottom="true" />-->
-
-        <include
-        android:id="@+id/tabs"
-        layout="@layout/bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true" />
+        <!--<include-->
+        <!--android:id="@+id/tabs"-->
+        <!--layout="@layout/bottombar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:layout_alignParentBottom="true" />-->
     </RelativeLayout>
 
 </android.support.v4.app.FragmentTabHost>

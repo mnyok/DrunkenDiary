@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Active tab -->
+    <item android:drawable="@drawable/ic_stats_pressed" android:state_focused="false" android:state_pressed="false" android:state_selected="true" />
+    <!-- Inactive tab -->
+    <item android:drawable="@drawable/ic_stats" android:state_focused="false" android:state_pressed="false" android:state_selected="false" />
+    <!--&lt;!&ndash; Pressed tab &ndash;&gt;-->
+    <!--<item android:drawable="@drawable/ic_stats_pressed" android:state_pressed="true" />-->
+    <!--&lt;!&ndash; Selected tab (using d-pad) &ndash;&gt;-->
+    <!--<item android:drawable="@drawable/ic_stats_pressed" android:state_focused="true" android:state_pressed="false" android:state_selected="true" />-->
+</selector>

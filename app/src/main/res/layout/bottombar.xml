@@ -33,5 +33,5 @@
         android:background="@null"
         android:button="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_report_xml" />
+        android:src="@drawable/ic_stats_xml" />
 </TabWidget>
