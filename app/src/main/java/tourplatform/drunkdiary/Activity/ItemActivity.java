@@ -48,10 +48,10 @@ public class ItemActivity extends Activity {
         et_note.setTypeface(Font.NOTOSANSCJKKR_THIN);
 
         date = getIntent().getExtras().getString("date");
-        String dayOfWeek = getIntent().getExtras().getString("dayOfWeek");
-        text_title.setText(date + " " + dayOfWeek);
+        String dayIncludeWeek = date + " " +getIntent().getExtras().getString("dayOfWeek");
+        text_title.setText(dayIncludeWeek);
     }
-//
+
 //    private void init(){
 //
 //

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F8F8F8">
 
     <include
         android:id="@+id/actionbar"
@@ -29,7 +30,7 @@
 
         <TextView
             android:id="@+id/text_drink_condition"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="11dp"
@@ -86,6 +87,7 @@
         </LinearLayout>
 
         <ViewSwitcher
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="185dp">
 
@@ -181,12 +183,17 @@
             android:paddingTop="8dp">
 
 
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.545"
+                android:visibility="invisible"
+                android:src="@drawable/item_emoticon_ok_xml" />
+
             <RadioButton
                 android:id="@+id/radio_ok"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:button="@drawable/item_emoticon_ok_xml" />
 
@@ -194,8 +201,6 @@
                 android:id="@+id/radio_soso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:button="@drawable/item_emoticon_soso_xml" />
 
@@ -203,8 +208,6 @@
                 android:id="@+id/radio_disgusted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:button="@drawable/item_emoticon_disgusted_xml" />
 
@@ -212,8 +215,6 @@
                 android:id="@+id/radio_vomit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:button="@drawable/item_emoticon_vomit_xml" />
 
@@ -221,8 +222,6 @@
                 android:id="@+id/radio_dead"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:button="@drawable/item_emoticon_dead_xml" />
 
