@@ -18,8 +18,11 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import tourplatform.drunkdiary.Activity.ItemActivity;
@@ -63,7 +66,7 @@ public class CalendarFragment extends Fragment {
 
         month = Calendar.getInstance();
 //        getActivity().onNewIntent(getActivity().getIntent());
-        items = new ArrayList<String>();
+        items = new ArrayList<>();
         adapter = new CalendarAdapter(getActivity(), month);
         gridView.setAdapter(adapter);
         handler = new Handler();
@@ -80,8 +83,49 @@ public class CalendarFragment extends Fragment {
                         day = "0" + day;
                     }
                     // return chosen date as string format
-                    Log.i("date", android.text.format.DateFormat.format("yyyy-MM", month) + "-" + day);
-                    intent.putExtra("date", android.text.format.DateFormat.format("yyyy-MM", month) + "-" + day);
+                    Log.i("date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
+                    intent.putExtra("date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
+
+                    //요일 계산
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+                    Date nDate = null;
+                    try {
+                        nDate = dateFormat.parse(android.text.format.DateFormat.format("yyyy.MM.dd", month) + "." + day);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    Calendar cal = Calendar.getInstance();
+                    assert nDate != null;
+                    cal.setTime(nDate);
+                    int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+
+                    String dayOfWeek = null;
+                    switch (dayNum) {
+                        case 1:
+                            dayOfWeek = "SUN";
+                            break;
+                        case 2:
+                            dayOfWeek = "MON";
+                            break;
+                        case 3:
+                            dayOfWeek = "TUE";
+                            break;
+                        case 4:
+                            dayOfWeek = "WEN";
+                            break;
+                        case 5:
+                            dayOfWeek = "THU";
+                            break;
+                        case 6:
+                            dayOfWeek = "FRI";
+                            break;
+                        case 7:
+                            dayOfWeek = "SAT";
+                            break;
+                    }
+                    intent.putExtra("dayOfWeek", dayOfWeek);
+
 //                    setResult(RESULT_OK, intent);
 //                    finish();
                     startActivity(intent);

@@ -1,9 +1,13 @@
 package tourplatform.drunkdiary.Activity;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -20,8 +24,14 @@ import tourplatform.drunkdiary.R;
  */
 public class ItemActivity extends Activity {
 
+    ImageButton bt_back;
     TextView text_title;
+    TextView text_drink_condition;
+    TextView text_note;
+    EditText et_note;
     FragmentTabHost mTabHost;
+
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +41,15 @@ public class ItemActivity extends Activity {
         assignView();
 
 
+        bt_back.setVisibility(View.VISIBLE);
+        text_drink_condition.setTypeface(Font.GOTHAM_MIDIUM);
+        text_note.setTypeface(Font.GOTHAM_MIDIUM);
         text_title.setTypeface(Font.GOTHAM_MIDIUM);
+        et_note.setTypeface(Font.NOTOSANSCJKKR_THIN);
+
+        date = getIntent().getExtras().getString("date");
+        String dayOfWeek = getIntent().getExtras().getString("dayOfWeek");
+        text_title.setText(date + " " + dayOfWeek);
     }
 //
 //    private void init(){
@@ -72,7 +90,26 @@ public class ItemActivity extends Activity {
 //    }
 
 
-    private void assignView(){
-        text_title = (TextView) findViewById(R.id.actionbar_title);
+    @Override
+    public void onBackPressed() {
+        bt_back.performClick();
     }
+
+    public void mOnClick(View view) {
+        switch (view.getId()) {
+            case R.id.bt_back:
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_down);
+                break;
+        }
+    }
+
+    private void assignView() {
+        bt_back = (ImageButton) findViewById(R.id.bt_back);
+        text_title = (TextView) findViewById(R.id.actionbar_title);
+        text_drink_condition = (TextView) findViewById(R.id.text_drink_condition);
+        text_note = (TextView) findViewById(R.id.text_note);
+        et_note = (EditText) findViewById(R.id.et_note);
+    }
+
 }

@@ -28,11 +28,12 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/text_drink_condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="12dp"
             android:layout_marginLeft="11dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="21dp"
             android:text="@string/drink_and_condition"
             android:textColor="#000000"
             android:textSize="13dp" />
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/item_btn_beer_xml"
-                android:button="@null"  />
+                android:button="@null" />
 
             <CheckBox
                 android:id="@+id/bt_somac"
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/item_btn_somac_xml"
-                android:button="@null"  />
+                android:button="@null" />
 
             <CheckBox
                 android:id="@+id/bt_makgeolli"
@@ -72,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/item_btn_makgeolli_xml"
-                android:button="@null"  />
+                android:button="@null" />
 
             <CheckBox
                 android:id="@+id/bt_liquor"
@@ -80,94 +81,159 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/item_btn_liquor_xml"
-                android:button="@null"  />
+                android:button="@null" />
 
         </LinearLayout>
 
-        <ViewFlipper
+        <ViewSwitcher
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="185dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <ImageView
-                    android:src="@drawable/icon_big_soju"
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="21dp">
 
+                    <ImageView
+                        android:id="@+id/item_bottle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/icon_big_soju" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_bottle"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp">
+
+                        <ImageButton
+                            android:id="@+id/item_btn_plus_bottle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:background="@null"
+                            android:src="@drawable/btn_plus_xml" />
+
+                        <ImageButton
+                            android:id="@+id/item_btn_minus_bottle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:src="@drawable/btn_minus_xml" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="21dp">
+
+                    <ImageView
+                        android:id="@+id/item_glass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/icon_big_soju_glass" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_glass"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp">
+
+                        <ImageButton
+                            android:id="@+id/item_btn_plus_glass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:background="@null"
+                            android:src="@drawable/btn_plus_xml" />
+
+                        <ImageButton
+                            android:id="@+id/item_btn_minus_glass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:src="@drawable/btn_minus_xml" />
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
 
-        </ViewFlipper>
+        </ViewSwitcher>
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_emoticon"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
 
 
             <RadioButton
                 android:id="@+id/radio_ok"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/item_emoticon_ok_xml"
-                android:button="@null" />
+                android:button="@drawable/item_emoticon_ok_xml" />
 
             <RadioButton
                 android:id="@+id/radio_soso"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/item_emoticon_soso_xml"
-                android:button="@null" />
+                android:button="@drawable/item_emoticon_soso_xml" />
 
             <RadioButton
                 android:id="@+id/radio_disgusted"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/item_emoticon_disgusted_xml"
-                android:button="@null" />
+                android:button="@drawable/item_emoticon_disgusted_xml" />
 
             <RadioButton
                 android:id="@+id/radio_vomit"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/item_emoticon_vomit_xml"
-                android:button="@null" />
+                android:button="@drawable/item_emoticon_vomit_xml" />
 
             <RadioButton
                 android:id="@+id/radio_dead"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/item_emoticon_dead_xml"
-                android:button="@null" />
+                android:button="@drawable/item_emoticon_dead_xml" />
 
         </RadioGroup>
 
         <TextView
+            android:id="@+id/text_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="11dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="18dp"
             android:text="NOTE"
             android:textColor="#000000"
             android:textSize="13dp" />
@@ -176,9 +242,9 @@
             android:id="@+id/et_note"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@drawable/et"
             android:gravity="start"
@@ -193,24 +259,25 @@
             android:layout_gravity="center_horizontal">
 
             <ImageButton
-                android:id="@+id/bt_save"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_gravity="center_vertical"
-                android:background="@null"
-                android:button="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/btn_save_xml" />
-
-            <ImageButton
                 android:id="@+id/bt_delete"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:button="@null"
                 android:scaleType="fitCenter"
+                android:layout_marginRight="45dp"
                 android:src="@drawable/btn_delete_xml" />
+
+            <ImageButton
+                android:id="@+id/bt_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:button="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/btn_save_xml"/>
 
         </LinearLayout>
 
