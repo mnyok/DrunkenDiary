@@ -15,6 +15,7 @@ import android.widget.TextView;
 import tourplatform.drunkdiary.Font;
 import tourplatform.drunkdiary.Fragment.CalendarFragment;
 import tourplatform.drunkdiary.Fragment.DiaryFragment;
+import tourplatform.drunkdiary.Fragment.StatsFragment;
 import tourplatform.drunkdiary.R;
 
 public class MainActivity extends FragmentActivity {
@@ -83,7 +84,7 @@ public class MainActivity extends FragmentActivity {
         tabSpec.setIndicator(btn);
         b = new Bundle();
         b.putString("name", "report");
-        mTabHost.addTab(tabSpec, CalendarFragment.class, b);
+        mTabHost.addTab(tabSpec, StatsFragment.class, b);
     }
 
     private void assignView(){
