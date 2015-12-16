@@ -37,6 +37,7 @@ public class MainActivity extends FragmentActivity {
         Font.GOTHAM_LIGHT = Typeface.createFromAsset(getAssets(), "Gotham-Light.otf");
         Font.GOTHAM_MIDIUM = Typeface.createFromAsset(getAssets(), "Gotham-Medium.ttf");
         Font.NOTOSANSCJKKR_THIN = Typeface.createFromAsset(getAssets(), "NotoSansCJKkr-Thin.otf");
+        Font.NOTOSANSCJKKR_LIGHT = Typeface.createFromAsset(getAssets(), "NotoSansCJKkr-Light.otf");
 
         text_title.setTypeface(Font.GOTHAM_MIDIUM);
 
@@ -83,7 +84,7 @@ public class MainActivity extends FragmentActivity {
         btn.setScaleType(ImageView.ScaleType.FIT_CENTER);
         tabSpec.setIndicator(btn);
         b = new Bundle();
-        b.putString("name", "report");
+        b.putString("name", "stats");
         mTabHost.addTab(tabSpec, StatsFragment.class, b);
     }
 

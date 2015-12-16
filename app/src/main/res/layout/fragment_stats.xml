@@ -1,12 +1,580 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical">
 
+
+    <!--아래쪽 5칸-->
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:id="@+id/stats_layout_stats"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="#EEEEEE"
+        android:orientation="vertical">
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/stats_bg_soju"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/stats_image_soju"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_white_soju" />
+
+            <LinearLayout
+                android:id="@+id/stats_layout_soju_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_soju_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_soju_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stats_layout_soju_avr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:layout_toLeftOf="@id/stats_layout_soju_total"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_soju_avr_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="AVERAGE"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_soju_avr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/stats_text_soju"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/stats_layout_soju_avr"
+                android:layout_toRightOf="@id/stats_image_soju"
+                android:gravity="center"
+                android:text="소주"
+                android:textColor="#FFFFFF" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/stats_bg_beer"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/stats_image_beer"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_white_beer" />
+
+            <LinearLayout
+                android:id="@+id/stats_layout_beer_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_beer_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_beer_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stats_layout_beer_avr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:layout_toLeftOf="@id/stats_layout_beer_total"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_beer_avr_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="AVERAGE"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_beer_avr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/stats_text_beer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/stats_layout_beer_avr"
+                android:layout_toRightOf="@id/stats_image_beer"
+                android:gravity="center"
+                android:text="맥주"
+                android:textColor="#FFFFFF" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/stats_bg_somac"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/stats_image_somac"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_white_somac" />
+
+            <LinearLayout
+                android:id="@+id/stats_layout_somac_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_somac_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_somac_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stats_layout_somac_avr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:layout_toLeftOf="@id/stats_layout_somac_total"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_somac_avr_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="AVERAGE"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_somac_avr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/stats_text_somac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/stats_layout_somac_avr"
+                android:layout_toRightOf="@id/stats_image_somac"
+                android:gravity="center"
+                android:text="소맥"
+                android:textColor="#FFFFFF" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/stats_bg_liquor"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/stats_image_liquor"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_white_liquor" />
+
+            <LinearLayout
+                android:id="@+id/stats_layout_liquor_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_liquor_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_liquor_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stats_layout_liquor_avr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:layout_toLeftOf="@id/stats_layout_liquor_total"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_liquor_avr_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="AVERAGE"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_liquor_avr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/stats_text_liquor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/stats_layout_liquor_avr"
+                android:layout_toRightOf="@id/stats_image_liquor"
+                android:gravity="center"
+                android:text="양주"
+                android:textColor="#FFFFFF" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/stats_bg_makgeolli"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/stats_image_makgeolli"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_white_makgeolli" />
+
+            <LinearLayout
+                android:id="@+id/stats_layout_makgeolli_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_makgeolli_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_makgeolli_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stats_layout_makgeolli_avr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:layout_toLeftOf="@id/stats_layout_makgeolli_total"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stats_text_makgeolli_avr_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="AVERAGE"
+                    android:textColor="#9F8046"
+                    android:textSize="7dp" />
+
+                <TextView
+                    android:id="@+id/stats_text_makgeolli_avr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/stats_text_makgeolli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/stats_layout_makgeolli_avr"
+                android:layout_toRightOf="@id/stats_image_makgeolli"
+                android:gravity="center"
+                android:text="막걸리"
+                android:textColor="#FFFFFF" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/stats_layout_stats"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/stats_text_you_were_drunken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:text="YOU WERE DRUNKEN"
+                android:textColor="#000000"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/stats_text_drink_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="23dp"
+                android:text="08"
+                android:textColor="#000000"
+                android:textSize="46dp" />
+
+            <TextView
+                android:id="@+id/stats_text_days_in_a_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="DAYS IN A MONTH"
+                android:textColor="#000000"
+                android:textSize="13dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

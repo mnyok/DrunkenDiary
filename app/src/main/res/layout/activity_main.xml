@@ -28,7 +28,8 @@
             android:id="@+id/realcontent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/actionbar" />
+            android:layout_below="@id/actionbar"
+            android:layout_above="@android:id/tabs"/>
 
         <TabWidget
             android:id="@android:id/tabs"

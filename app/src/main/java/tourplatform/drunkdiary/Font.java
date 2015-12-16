@@ -10,4 +10,5 @@ public class Font {
     public static Typeface GOTHAM_MIDIUM;
     public static Typeface GOTHAM_LIGHT;
     public static Typeface NOTOSANSCJKKR_THIN;
+    public static Typeface NOTOSANSCJKKR_LIGHT;
 }
