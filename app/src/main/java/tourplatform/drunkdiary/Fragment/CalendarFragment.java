@@ -75,7 +75,7 @@ public class CalendarFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 TextView date = (TextView) v.findViewById(R.id.text_day);
-                if (date instanceof TextView && !date.getText().equals("")) {
+                if (date != null && !date.getText().equals("")) {
 
                     Intent intent = new Intent(getActivity(), ItemActivity.class);
                     String day = date.getText().toString();

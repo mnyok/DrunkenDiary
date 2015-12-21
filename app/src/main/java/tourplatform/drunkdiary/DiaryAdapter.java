@@ -79,7 +79,7 @@ public class DiaryAdapter extends BaseAdapter {
 
         listElement = getItem(position);
         if (listElement != null) {
-            holder.text_date.setText(listElement.getDate());
+            holder.text_date.setText(listElement.getDateWeekString("."));
             holder.text_date.setTypeface(Font.GOTHAM_MIDIUM);
             holder.text_note.setText(listElement.getNote());
             holder.text_note.setTypeface(Font.NOTOSANSCJKKR_LIGHT);
