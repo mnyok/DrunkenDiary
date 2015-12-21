@@ -550,7 +550,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
                 android:text="YOU WERE DRUNKEN"
                 android:textColor="#000000"
                 android:textSize="13dp" />
@@ -560,10 +559,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="23dp"
                 android:text="08"
                 android:textColor="#000000"
-                android:textSize="46dp" />
+                android:textSize="90dp" />
 
             <TextView
                 android:id="@+id/stats_text_days_in_a_month"

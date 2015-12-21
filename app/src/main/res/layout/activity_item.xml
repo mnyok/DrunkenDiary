@@ -12,13 +12,12 @@
         android:layout_alignParentTop="true" />
 
 
-    <TabWidget
+    <include
         android:id="@+id/tabs"
+        layout="@layout/bottombar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/tab_bg"
-        android:padding="10dp" />
+        android:layout_alignParentBottom="true" />
 
     <LinearLayout
         android:id="@+id/item_contents"

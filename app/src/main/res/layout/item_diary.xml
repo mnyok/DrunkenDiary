@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/diary_box"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/diary_text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="2015.12.21 FRI"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/diary_image_alcohol"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/diary_ic_soju" />
+
+        <ImageView
+            android:id="@+id/diary_image_emoticon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/diary_image_alcohol"
+            android:src="@drawable/diary_ic_disgusted" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/diary_text_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="note"
+        android:textColor="#000000"
+        android:textSize="12dp" />
+
+</LinearLayout>
