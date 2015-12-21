@@ -43,52 +43,57 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
+            <Button
                 android:id="@+id/bt_soju"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_btn_soju_xml"
-                android:button="@null" />
+                android:background="@drawable/item_btn_soju"
+                android:button="@null"
+                android:onClick="mOnAlcoholClick" />
 
-            <CheckBox
+            <Button
                 android:id="@+id/bt_beer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_btn_beer_xml"
-                android:button="@null" />
+                android:background="@drawable/item_btn_beer"
+                android:button="@null"
+                android:onClick="mOnAlcoholClick" />
 
-            <CheckBox
+            <Button
                 android:id="@+id/bt_somac"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_btn_somac_xml"
-                android:button="@null" />
+                android:background="@drawable/item_btn_somac"
+                android:button="@null"
+                android:onClick="mOnAlcoholClick" />
 
-            <CheckBox
+            <Button
                 android:id="@+id/bt_makgeolli"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_btn_makgeolli_xml"
-                android:button="@null" />
+                android:background="@drawable/item_btn_makgeolli"
+                android:button="@null"
+                android:onClick="mOnAlcoholClick" />
 
-            <CheckBox
+            <Button
                 android:id="@+id/bt_liquor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_btn_liquor_xml"
-                android:button="@null" />
+                android:background="@drawable/item_btn_liquor"
+                android:button="@null"
+                android:onClick="mOnAlcoholClick" />
 
         </LinearLayout>
 
-        <ViewSwitcher
-            android:background="#FFFFFF"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="185dp">
+            android:layout_height="185dp"
+            android:background="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -96,80 +101,123 @@
                 android:layout_gravity="center">
 
                 <RelativeLayout
+                    android:id="@+id/layout_bottle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="21dp">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/item_bottle"
+                    <RelativeLayout
+                        android:id="@+id/item_layout_bottle_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/icon_big_soju" />
+                        android:layout_centerHorizontal="true">
+
+                        <ImageView
+                            android:id="@+id/item_bottle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/icon_big_soju" />
+
+                        <TextView
+                            android:id="@+id/text_bottle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@id/item_bottle"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="15dp"
+                            android:text="0"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16dp"
+                            android:visibility="visible" />
+
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/item_bottle"
+                        android:layout_below="@id/item_layout_bottle_image"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp">
 
                         <ImageButton
-                            android:id="@+id/item_btn_plus_bottle"
+                            android:id="@+id/item_bt_plus_bottle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
                             android:background="@null"
+                            android:onClick="mOnClick"
                             android:src="@drawable/btn_plus_xml" />
 
                         <ImageButton
-                            android:id="@+id/item_btn_minus_bottle"
+                            android:id="@+id/item_bt_minus_bottle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@null"
+                            android:onClick="mOnClick"
                             android:src="@drawable/btn_minus_xml" />
                     </LinearLayout>
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/layout_glass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginLeft="21dp">
+                    android:layout_marginLeft="42dp">
 
-                    <ImageView
-                        android:id="@+id/item_glass"
+                    <RelativeLayout
+                        android:id="@+id/item_layout_glass_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/icon_big_soju_glass" />
+                        android:layout_centerHorizontal="true">
+
+                        <ImageView
+                            android:id="@+id/item_glass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/icon_big_soju_glass" />
+
+                        <TextView
+                            android:id="@+id/text_glass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="0"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16dp"
+                            android:visibility="invisible" />
+
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/item_glass"
+                        android:layout_below="@id/item_layout_glass_image"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp">
 
                         <ImageButton
-                            android:id="@+id/item_btn_plus_glass"
+                            android:id="@+id/item_bt_plus_glass"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
                             android:background="@null"
+                            android:onClick="mOnClick"
                             android:src="@drawable/btn_plus_xml" />
 
                         <ImageButton
-                            android:id="@+id/item_btn_minus_glass"
+                            android:id="@+id/item_bt_minus_glass"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@null"
+                            android:onClick="mOnClick"
                             android:src="@drawable/btn_minus_xml" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
 
-        </ViewSwitcher>
+        </FrameLayout>
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -186,8 +234,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.545"
-                android:visibility="invisible"
-                android:src="@drawable/item_emoticon_ok_xml" />
+                android:src="@drawable/item_emoticon_ok_xml"
+                android:visibility="invisible" />
 
             <RadioButton
                 android:id="@+id/radio_ok"
@@ -261,10 +309,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="45dp"
                 android:background="@null"
                 android:button="@null"
                 android:scaleType="fitCenter"
-                android:layout_marginRight="45dp"
                 android:src="@drawable/btn_delete_xml" />
 
             <ImageButton
@@ -275,7 +323,7 @@
                 android:background="@null"
                 android:button="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/btn_save_xml"/>
+                android:src="@drawable/btn_save_xml" />
 
         </LinearLayout>
 

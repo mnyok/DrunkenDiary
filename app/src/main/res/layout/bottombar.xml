@@ -3,36 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
-    android:padding="10dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ImageButton
-        android:id="@+id/bt_calendar"
+        android:id="@+id/bottombar_bt_calendar"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@null"
         android:button="@null"
+        android:onClick="mOnClick"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_calendar_xml" />
 
     <ImageButton
-        android:id="@+id/bt_diary"
+        android:id="@+id/bottombar_bt_diary"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@null"
         android:button="@null"
+        android:onClick="mOnClick"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_diary_xml" />
 
     <ImageButton
-        android:id="@+id/bt_stats"
+        android:id="@+id/bottombar_bt_stats"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@null"
         android:button="@null"
+        android:onClick="mOnClick"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_stats_xml" />
 </LinearLayout>

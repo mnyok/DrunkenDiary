@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,6 +26,9 @@ public class MainActivity extends FragmentActivity {
 
     RelativeLayout actionbar;
     TextView text_title;
+    public ImageView bt_calendar;
+    public ImageView bt_diary;
+    public ImageView bt_stats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,14 @@ public class MainActivity extends FragmentActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        Log.i("requestCode", String.valueOf(requestCode));
+//        Log.i("resultCode", String.valueOf(resultCode));
+//        Log.i("result data", data.getStringExtra("test"));
+//    }
 
     private void init(){
 
@@ -58,31 +66,31 @@ public class MainActivity extends FragmentActivity {
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realcontent);
 
         TabHost.TabSpec tabSpec = mTabHost.newTabSpec("tab1");
-        ImageView btn = new ImageView(this);
-        btn.setClickable(true);
-        btn.setImageResource(R.drawable.ic_calendar_xml);
-        btn.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        tabSpec.setIndicator(btn);
+        bt_calendar = new ImageView(this);
+        bt_calendar.setClickable(true);
+        bt_calendar.setImageResource(R.drawable.ic_calendar_xml);
+        bt_calendar.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        tabSpec.setIndicator(bt_calendar);
         Bundle b = new Bundle();
         b.putString("name", "calendar");
         mTabHost.addTab(tabSpec, CalendarFragment.class, b);
 
         tabSpec = mTabHost.newTabSpec("tab2");
-        btn = new ImageView(this);
-        btn.setClickable(true);
-        btn.setImageResource(R.drawable.ic_diary_xml);
-        btn.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        tabSpec.setIndicator(btn);
+        bt_diary = new ImageView(this);
+        bt_diary.setClickable(true);
+        bt_diary.setImageResource(R.drawable.ic_diary_xml);
+        bt_diary.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        tabSpec.setIndicator(bt_diary);
         b = new Bundle();
         b.putString("name", "diary");
         mTabHost.addTab(tabSpec, DiaryFragment.class, b);
 
         tabSpec = mTabHost.newTabSpec("tab3");
-        btn = new ImageView(this);
-        btn.setClickable(true);
-        btn.setImageResource(R.drawable.ic_stats_xml);
-        btn.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        tabSpec.setIndicator(btn);
+        bt_stats = new ImageView(this);
+        bt_stats.setClickable(true);
+        bt_stats.setImageResource(R.drawable.ic_stats_xml);
+        bt_stats.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        tabSpec.setIndicator(bt_stats);
         b = new Bundle();
         b.putString("name", "stats");
         mTabHost.addTab(tabSpec, StatsFragment.class, b);

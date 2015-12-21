@@ -126,9 +126,7 @@ public class CalendarFragment extends Fragment {
                     }
                     intent.putExtra("dayOfWeek", dayOfWeek);
 
-//                    setResult(RESULT_OK, intent);
-//                    finish();
-                    startActivity(intent);
+                    startActivityForResult(intent, ItemActivity.CODE);
                     getActivity().overridePendingTransition(R.anim.slide_in_up, android.R.anim.fade_out);
                 }
 
@@ -136,6 +134,35 @@ public class CalendarFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.i("requestCode", String.valueOf(requestCode));
+        Log.i("resultCode", String.valueOf(resultCode));
+        Log.i("result data", data.getStringExtra("clicked"));
+
+        if(requestCode == ItemActivity.CODE){
+            switch(data.getStringExtra("clicked")){
+                case "calendar":
+                    //TODO: refresh calendar
+                case "back":
+                    break;
+                case "diary":
+                    ((MainActivity)getActivity()).bt_diary.performClick();
+                    break;
+                case "stats":
+                    ((MainActivity)getActivity()).bt_stats.performClick();
+                    break;
+                default:
+                    Log.i("Result Error", "wrong activityResult");
+
+            }
+        }
+
+
     }
 
 

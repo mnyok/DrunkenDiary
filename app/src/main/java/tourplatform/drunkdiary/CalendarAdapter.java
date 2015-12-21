@@ -94,6 +94,7 @@ public class CalendarAdapter extends BaseAdapter {
         } else {
             // mark current day as focused
             if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
+                text_day.setBackgroundResource(R.drawable.ic_today);
 //                v.setBackgroundResource(R.drawable.item_background_focused);
             } else {
 //                v.setBackgroundResource(R.drawable.list_item_background);
