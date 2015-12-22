@@ -2,7 +2,6 @@ package tourplatform.drunkdiary.Fragment;
 
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -12,10 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -23,11 +20,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
 import tourplatform.drunkdiary.Activity.ItemActivity;
 import tourplatform.drunkdiary.Activity.MainActivity;
 import tourplatform.drunkdiary.CalendarAdapter;
+import tourplatform.drunkdiary.DiaryData;
 import tourplatform.drunkdiary.Font;
 import tourplatform.drunkdiary.R;
 
@@ -38,7 +35,7 @@ public class CalendarFragment extends Fragment {
     public Calendar month;
     public CalendarAdapter adapter;
     public Handler handler;
-    public ArrayList<String> items; // container to store some random calendar items
+    public ArrayList<DiaryData> diaryList; // container to show calendar icons(alcohols)
     GridView gridView;
 
     TextView text_year;
@@ -60,13 +57,13 @@ public class CalendarFragment extends Fragment {
         bt_right.setOnClickListener(onClickListener);
 
 
-        for(TextView aText_week: text_week){
+        for (TextView aText_week : text_week) {
             aText_week.setTypeface(Font.GOTHAM_LIGHT);
         }
 
         month = Calendar.getInstance();
 //        getActivity().onNewIntent(getActivity().getIntent());
-        items = new ArrayList<>();
+        diaryList = new ArrayList<>();
         adapter = new CalendarAdapter(getActivity(), month);
         gridView.setAdapter(adapter);
         handler = new Handler();
@@ -83,7 +80,7 @@ public class CalendarFragment extends Fragment {
                         day = "0" + day;
                     }
                     // return chosen date as string format
-                    Log.i("date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
+                    Log.i("Clicked date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
                     intent.putExtra("date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
 
                     //요일 계산
@@ -140,24 +137,18 @@ public class CalendarFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i("requestCode", String.valueOf(requestCode));
-        Log.i("resultCode", String.valueOf(resultCode));
-        Log.i("result data", data.getStringExtra("clicked"));
+        Log.i("ActivityResult data", data.getStringExtra("clicked"));
 
-        if(requestCode == ItemActivity.CODE){
-            switch(data.getStringExtra("clicked")){
-                case "calendar":
-                    //TODO: refresh calendar
-                case "back":
-                    break;
+        if (requestCode == ItemActivity.CODE) {
+            switch (data.getStringExtra("clicked")) {
                 case "diary":
-                    ((MainActivity)getActivity()).bt_diary.performClick();
+                    ((MainActivity) getActivity()).bt_diary.performClick();
                     break;
                 case "stats":
-                    ((MainActivity)getActivity()).bt_stats.performClick();
+                    ((MainActivity) getActivity()).bt_stats.performClick();
                     break;
                 default:
-                    Log.i("Result Error", "wrong activityResult");
+                    refreshCalendar();
 
             }
         }
@@ -166,22 +157,21 @@ public class CalendarFragment extends Fragment {
     }
 
 
-    public void refreshCalendar()
-    {
+    public void refreshCalendar() {
 
         adapter.refreshDays();
         adapter.notifyDataSetChanged();
-        handler.post(calendarUpdater); // generate some random calendar items
+        handler.post(calendarUpdater); // generate some random calendar diaryList
 
         String tmpMonth = android.text.format.DateFormat.format("yyyy", month).toString();
         StringBuilder s = new StringBuilder();
-        s.append(tmpMonth.substring(0,1));
+        s.append(tmpMonth.substring(0, 1));
         s.append(" ");
-        s.append(tmpMonth.substring(1,2));
+        s.append(tmpMonth.substring(1, 2));
         s.append(" ");
-        s.append(tmpMonth.substring(2,3));
+        s.append(tmpMonth.substring(2, 3));
         s.append(" ");
-        s.append(tmpMonth.substring(3,4));
+        s.append(tmpMonth.substring(3, 4));
 
         text_year.setText(s.toString());
         text_month.setText(android.text.format.DateFormat.format("M", month));
@@ -191,18 +181,12 @@ public class CalendarFragment extends Fragment {
 
         @Override
         public void run() {
-            items.clear();
-            // format random values. You can implement a dedicated class to provide real values
-            for(int i=0;i<31;i++) {
-                Random r = new Random();
+            diaryList.clear();
 
-                if(r.nextInt(10)>6)
-                {
-                    items.add(Integer.toString(i));
-                }
-            }
+            diaryList = MainActivity.dbHelper.getAlcoholList(
+                    android.text.format.DateFormat.format("yyyy-MM", month).toString());
 
-            adapter.setItems(items);
+            adapter.setList(diaryList);
             adapter.notifyDataSetChanged();
         }
     };
@@ -210,20 +194,20 @@ public class CalendarFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.bt_left:
-                    if(month.get(Calendar.MONTH)== month.getActualMinimum(Calendar.MONTH)) {
-                        month.set((month.get(Calendar.YEAR)-1),month.getActualMaximum(Calendar.MONTH),1);
+                    if (month.get(Calendar.MONTH) == month.getActualMinimum(Calendar.MONTH)) {
+                        month.set((month.get(Calendar.YEAR) - 1), month.getActualMaximum(Calendar.MONTH), 1);
                     } else {
-                        month.set(Calendar.MONTH,month.get(Calendar.MONTH)-1);
+                        month.set(Calendar.MONTH, month.get(Calendar.MONTH) - 1);
                     }
                     refreshCalendar();
-                    return;
+                    break;
                 case R.id.bt_right:
-                    if(month.get(Calendar.MONTH)== month.getActualMaximum(Calendar.MONTH)) {
-                        month.set((month.get(Calendar.YEAR)+1),month.getActualMinimum(Calendar.MONTH),1);
+                    if (month.get(Calendar.MONTH) == month.getActualMaximum(Calendar.MONTH)) {
+                        month.set((month.get(Calendar.YEAR) + 1), month.getActualMinimum(Calendar.MONTH), 1);
                     } else {
-                        month.set(Calendar.MONTH,month.get(Calendar.MONTH)+1);
+                        month.set(Calendar.MONTH, month.get(Calendar.MONTH) + 1);
                     }
                     refreshCalendar();
             }
@@ -231,11 +215,11 @@ public class CalendarFragment extends Fragment {
     };
 
 
-    private void assignView(View view){
+    private void assignView(View view) {
 
         bt_left = (ImageButton) view.findViewById(R.id.bt_left);
         bt_right = (ImageButton) view.findViewById(R.id.bt_right);
-        text_year= (TextView) view.findViewById(R.id.text_year);
+        text_year = (TextView) view.findViewById(R.id.text_year);
         text_month = (TextView) view.findViewById(R.id.text_month);
         gridView = (GridView) view.findViewById(R.id.grid_calendar);
 

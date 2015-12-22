@@ -163,7 +163,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginLeft="42dp">
+                    android:layout_marginLeft="42dp"
+                    android:gravity="center_horizontal">
 
                     <RelativeLayout
                         android:id="@+id/item_layout_glass_image"
@@ -242,36 +243,41 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:button="@drawable/item_emoticon_ok_xml" />
+                android:button="@drawable/item_emoticon_ok_xml"
+                android:checked="true"
+                android:onClick="onRadioClick" />
 
             <RadioButton
                 android:id="@+id/radio_soso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:button="@drawable/item_emoticon_soso_xml" />
+                android:button="@drawable/item_emoticon_soso_xml"
+                android:onClick="onRadioClick" />
 
             <RadioButton
                 android:id="@+id/radio_disgusted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:button="@drawable/item_emoticon_disgusted_xml" />
+                android:button="@drawable/item_emoticon_disgusted_xml"
+                android:onClick="onRadioClick" />
 
             <RadioButton
                 android:id="@+id/radio_vomit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:button="@drawable/item_emoticon_vomit_xml" />
+                android:button="@drawable/item_emoticon_vomit_xml"
+                android:onClick="onRadioClick" />
 
             <RadioButton
                 android:id="@+id/radio_dead"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:button="@drawable/item_emoticon_dead_xml" />
-
+                android:button="@drawable/item_emoticon_dead_xml"
+                android:onClick="onRadioClick" />
         </RadioGroup>
 
         <TextView
@@ -294,8 +300,10 @@
             android:layout_weight="1"
             android:background="@drawable/et"
             android:gravity="start"
-            android:padding="5dp"
-            android:text="어제 친구랑 ㅁㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
             android:textColor="#000000"
             android:textSize="11dp" />
 
@@ -312,6 +320,7 @@
                 android:layout_marginRight="45dp"
                 android:background="@null"
                 android:button="@null"
+                android:onClick="mOnClick"
                 android:scaleType="fitCenter"
                 android:src="@drawable/btn_delete_xml" />
 
@@ -322,6 +331,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:button="@null"
+                android:onClick="mOnClick"
                 android:scaleType="fitCenter"
                 android:src="@drawable/btn_save_xml" />
 

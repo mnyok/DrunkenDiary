@@ -26,12 +26,10 @@ public class DiaryData {
     public DiaryData(String dateString, Condition condition, Alcohol alcohol, String note, int bottle, int glass) {
 
         //calendar's month is start at 0
-        date.set(Integer.parseInt(dateString.substring(0, 4)),
-                Integer.parseInt(dateString.substring(5, 7)) - 1,
-                Integer.parseInt(dateString.substring(8, 10)));
-
-        Log.i("date", (date.get(Calendar.YEAR)) + "." + date.get(Calendar.MONTH) + "." + date.get(Calendar.DAY_OF_MONTH) + " " + date.get(Calendar.DAY_OF_WEEK));
-
+        dateString = dateString.replace(".", "-");
+        date.set(Integer.parseInt(dateString.split("[-]")[0]),
+                Integer.parseInt(dateString.split("[-]")[1]) - 1,
+                Integer.parseInt(dateString.split("[-]")[2]));
 
         this.condition = condition;
         this.alcohol = alcohol;

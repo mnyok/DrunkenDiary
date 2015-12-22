@@ -49,7 +49,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="TOTAL"
-                    android:textColor="#9F8046"
+                    android:textColor="#008616"
                     android:textSize="7dp" />
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="AVERAGE"
-                    android:textColor="#9F8046"
+                    android:textColor="#008616"
                     android:textSize="7dp" />
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="TOTAL"
-                    android:textColor="#9F8046"
+                    android:textColor="#BA9602"
                     android:textSize="7dp" />
 
                 <TextView
@@ -188,7 +188,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="AVERAGE"
-                    android:textColor="#9F8046"
+                    android:textColor="#BA9602"
                     android:textSize="7dp" />
 
                 <TextView
@@ -255,7 +255,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="TOTAL"
-                    android:textColor="#9F8046"
+                    android:textColor="#CA670F"
                     android:textSize="7dp" />
 
                 <TextView
@@ -291,7 +291,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="AVERAGE"
-                    android:textColor="#9F8046"
+                    android:textColor="#CA670F"
                     android:textSize="7dp" />
 
                 <TextView
@@ -358,7 +358,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="TOTAL"
-                    android:textColor="#9F8046"
+                    android:textColor="#E3340C"
                     android:textSize="7dp" />
 
                 <TextView
@@ -394,7 +394,7 @@
                     android:layout_weight="3"
                     android:gravity="center"
                     android:text="AVERAGE"
-                    android:textColor="#9F8046"
+                    android:textColor="#E3340C"
                     android:textSize="7dp" />
 
                 <TextView

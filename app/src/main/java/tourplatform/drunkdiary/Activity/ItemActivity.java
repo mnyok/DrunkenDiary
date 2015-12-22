@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import tourplatform.drunkdiary.Alcohol;
+import tourplatform.drunkdiary.Condition;
+import tourplatform.drunkdiary.DiaryData;
 import tourplatform.drunkdiary.Font;
 import tourplatform.drunkdiary.R;
 
@@ -40,8 +42,13 @@ public class ItemActivity extends Activity {
 
     EditText et_note;
 
+    //true if already written in this day
+    Boolean update = false;
+
+    //date of today (yyyy.MM.dd)
     String date;
     Alcohol selected_alcohol = null;
+    Condition condition = Condition.OK;
     int bottle;
     int glass;
 
@@ -66,6 +73,58 @@ public class ItemActivity extends Activity {
         text_bottle.setTypeface(Font.GOTHAM_BOOK);
         text_glass.setTypeface(Font.GOTHAM_BOOK);
         bt_soju.performClick();
+
+        //load saved data from database
+        DiaryData savedData = MainActivity.dbHelper.getItem(date);
+        if (savedData != null) {
+            update = true;
+
+            Log.i("item", savedData.getDateString(".") + " " + savedData.getCondition().name()
+                    + " " + savedData.getAlcohol().name()
+                    + " " + savedData.getBottle()
+                    + " " + savedData.getGlass()
+                    + " " + savedData.getNote());
+
+            switch (savedData.getAlcohol()) {
+                case SOJU:
+                    bt_soju.performClick();
+                    break;
+                case BEER:
+                    bt_beer.performClick();
+                    break;
+                case SOMAC:
+                    bt_somac.performClick();
+                    break;
+                case MAKGEOLLI:
+                    bt_makgeolli.performClick();
+                    break;
+                case LIQUOR:
+                    bt_liquor.performClick();
+                    break;
+            }
+            switch (savedData.getCondition()) {
+                case OK:
+                    findViewById(R.id.radio_ok).performClick();
+                    break;
+                case SOSO:
+                    findViewById(R.id.radio_soso).performClick();
+                    break;
+                case DISGUSTED:
+                    findViewById(R.id.radio_disgusted).performClick();
+                    break;
+                case VOMIT:
+                    findViewById(R.id.radio_vomit).performClick();
+                    break;
+                case DEAD:
+                    findViewById(R.id.radio_dead).performClick();
+                    break;
+            }
+            bottle = savedData.getBottle();
+            refreshBottleLayout();
+            glass = savedData.getGlass();
+            refreshGlassLayout();
+            et_note.setText(savedData.getNote());
+        }
     }
 
 
@@ -108,6 +167,18 @@ public class ItemActivity extends Activity {
         }
     }
 
+    public void refreshBottleLayout() {
+        text_bottle.setText(String.valueOf(bottle));
+
+        if (bottle == 0) {
+            setBottleImage(selected_alcohol, false);
+            text_bottle.setVisibility(View.INVISIBLE);
+        } else {
+            setBottleImage(selected_alcohol, true);
+            text_bottle.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void setGlassImage(Alcohol alcohol, boolean fill) {
         switch (selected_alcohol) {
             case SOJU:
@@ -132,6 +203,18 @@ public class ItemActivity extends Activity {
         }
     }
 
+    public void refreshGlassLayout() {
+        text_glass.setText(String.valueOf(glass));
+
+        if (glass == 0) {
+            setGlassImage(selected_alcohol, false);
+            text_glass.setVisibility(View.INVISIBLE);
+        } else {
+            setGlassImage(selected_alcohol, true);
+            text_glass.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void mOnClick(View view) {
         switch (view.getId()) {
             case R.id.bt_back:
@@ -144,79 +227,52 @@ public class ItemActivity extends Activity {
                 finishWithResult("diary");
                 break;
             case R.id.bottombar_bt_stats:
-                finishWithResult("calendar");
+                finishWithResult("stats");
                 break;
             case R.id.bt_save:
-                //TODO : save
+                DiaryData diaryData = new DiaryData(
+                        date,
+                        condition,
+                        selected_alcohol,
+                        et_note.getText().toString(),
+                        bottle,
+                        glass);
+                if(update){
+                    MainActivity.dbHelper.updateItem(diaryData);
+                } else {
+                    MainActivity.dbHelper.addItem(diaryData);
+
+                }
                 finishWithResult("back");
                 break;
             case R.id.bt_delete:
-                //TODO : delete
+                MainActivity.dbHelper.deleteItem(date);
                 finishWithResult("back");
                 break;
             case R.id.item_bt_plus_bottle:
-                if (bottle == 0) {
-                    setBottleImage(selected_alcohol, true);
-                    text_bottle.setVisibility(View.VISIBLE);
-                }
-
                 bottle = (bottle + 1) % 10;
-                text_bottle.setText(String.valueOf(bottle));
-                Log.i("bottle", String.valueOf(bottle));
-                if (bottle == 0) {
-                    setBottleImage(selected_alcohol, false);
-                    text_bottle.setVisibility(View.INVISIBLE);
-                }
+                refreshBottleLayout();
                 break;
             case R.id.item_bt_minus_bottle:
                 if (bottle == 0) {
-                    setBottleImage(selected_alcohol, true);
-                    text_bottle.setVisibility(View.VISIBLE);
-                }
-
-                if(bottle == 0){
                     bottle = bottle + 9;
                 } else {
                     bottle = (bottle - 1) % 10;
                 }
-                text_bottle.setText(String.valueOf(bottle));
-                Log.i("bottle", String.valueOf(bottle));
-                if (bottle == 0) {
-                    setBottleImage(selected_alcohol, false);
-                    text_bottle.setVisibility(View.INVISIBLE);
-                }
+                refreshBottleLayout();
                 break;
             case R.id.item_bt_plus_glass:
-                if (glass == 0) {
-                    setGlassImage(selected_alcohol, true);
-                    text_glass.setVisibility(View.VISIBLE);
-                }
-
                 glass = (glass + 1) % 10;
-                text_glass.setText(String.valueOf(glass));
-                Log.i("glass", String.valueOf(glass));
-                if (glass == 0) {
-                    setGlassImage(selected_alcohol, false);
-                    text_glass.setVisibility(View.INVISIBLE);
-                }
+                refreshGlassLayout();
                 break;
             case R.id.item_bt_minus_glass:
-                if (glass == 0) {
-                    setGlassImage(selected_alcohol, true);
-                    text_glass.setVisibility(View.VISIBLE);
-                }
 
-                if(glass == 0){
+                if (glass == 0) {
                     glass = glass + 9;
                 } else {
                     glass = (glass - 1) % 10;
                 }
-                text_glass.setText(String.valueOf(glass));
-                Log.i("glass", String.valueOf(glass));
-                if (glass == 0) {
-                    setGlassImage(selected_alcohol, false);
-                    text_glass.setVisibility(View.INVISIBLE);
-                }
+                refreshGlassLayout();
                 break;
 
 
@@ -293,6 +349,27 @@ public class ItemActivity extends Activity {
                 glass = 0;
                 break;
         }
+    }
+
+    public void onRadioClick(View view) {
+        switch (view.getId()) {
+            case R.id.radio_ok:
+                condition = Condition.OK;
+                break;
+            case R.id.radio_soso:
+                condition = Condition.SOSO;
+                break;
+            case R.id.radio_disgusted:
+                condition = Condition.DISGUSTED;
+                break;
+            case R.id.radio_vomit:
+                condition = Condition.VOMIT;
+                break;
+            case R.id.radio_dead:
+                condition = Condition.DEAD;
+                break;
+        }
+
     }
 
     private void assignView() {

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import tourplatform.drunkdiary.DBHelper;
 import tourplatform.drunkdiary.Font;
 import tourplatform.drunkdiary.Fragment.CalendarFragment;
 import tourplatform.drunkdiary.Fragment.DiaryFragment;
@@ -22,6 +23,7 @@ import tourplatform.drunkdiary.R;
 public class MainActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
+    public static DBHelper dbHelper;
 
 
     RelativeLayout actionbar;
@@ -34,6 +36,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dbHelper = new DBHelper(this);
 
         assignView();
 
@@ -50,14 +53,7 @@ public class MainActivity extends FragmentActivity {
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        Log.i("requestCode", String.valueOf(requestCode));
-//        Log.i("resultCode", String.valueOf(resultCode));
-//        Log.i("result data", data.getStringExtra("test"));
-//    }
+
 
     private void init(){
 

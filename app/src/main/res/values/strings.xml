@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">DrunkDiary</string>
-
+    <string name="app_name">Drunken\nDiary</string>
     <string name="drink_and_condition">DRINK <![CDATA["&"]]> CONDITION</string>
 </resources>

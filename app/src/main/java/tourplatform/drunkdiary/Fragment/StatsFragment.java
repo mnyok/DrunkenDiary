@@ -3,11 +3,19 @@ package tourplatform.drunkdiary.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import tourplatform.drunkdiary.Activity.MainActivity;
+import tourplatform.drunkdiary.DiaryData;
 import tourplatform.drunkdiary.Font;
 import tourplatform.drunkdiary.R;
 
@@ -24,6 +32,12 @@ public class StatsFragment extends Fragment {
     TextView text_stats_total[];
     TextView text_stats_avr[];
 
+    Calendar calendar = Calendar.getInstance();
+    int day = 0;
+    float average[] = new float[5];
+    float total[] = new float[5];
+    float count[] = new float[5];
+
 
     @Nullable
     @Override
@@ -32,26 +46,89 @@ public class StatsFragment extends Fragment {
 
         assignView(view);
 
-
+        //set Typeface
         text_you_were_drunken.setTypeface(Font.GOTHAM_MIDIUM);
         text_days_in_a_month.setTypeface(Font.GOTHAM_MIDIUM);
         text_drink_day.setTypeface(Font.GOTHAM_BOOK);
-        for(TextView alcohol:text_alcohol){
+        for (TextView alcohol : text_alcohol) {
             alcohol.setTypeface(Font.NOTOSANSCJKKR_LIGHT);
         }
-        for(TextView title: text_stats_title){
+        for (TextView title : text_stats_title) {
             title.setTypeface(Font.GOTHAM_BOOK);
         }
-        for(TextView total: text_stats_total){
+        for (TextView total : text_stats_total) {
             total.setTypeface(Font.GOTHAM_BOOK);
         }
-        for(TextView avr: text_stats_avr){
+        for (TextView avr : text_stats_avr) {
             avr.setTypeface(Font.GOTHAM_BOOK);
         }
+
+        calculateStats();
+
         return view;
     }
 
-    private void assignView(View view){
+    private void calculateStats() {
+        ArrayList<DiaryData> diaryList;
+
+        for (int i = 0; i < 5; i++) {
+            total[i] = 0;
+            count[i] = 0;
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
+        diaryList = MainActivity.dbHelper.getAlcoholList(formatter.format(calendar.getTime()));
+
+        for (DiaryData diaryData : diaryList) {
+            switch (diaryData.getAlcohol()) {
+                case SOJU:
+                    count[0]++;
+                    total[0] += diaryData.getBottle() + ((float) diaryData.getGlass() / 7);
+                    break;
+                case BEER:
+                    count[1]++;
+                    total[1] += diaryData.getBottle() + ((float) diaryData.getGlass() * 2 / 3);
+                    break;
+                case SOMAC:
+                    count[2]++;
+                    total[2] += diaryData.getBottle();
+                    break;
+                case LIQUOR:
+                    count[3]++;
+                    total[3] += diaryData.getGlass();
+                    break;
+                case MAKGEOLLI:
+                    count[4]++;
+                    total[4] += diaryData.getBottle() + ((float) diaryData.getGlass() / 4);
+                    break;
+            }
+        }
+
+        //count average
+        for (int i = 0; i < 5; i++) {
+            if (count[i] == 0) {
+                average[i] = 0;
+            } else {
+                average[i] = total[i] / count[i];
+            }
+        }
+
+        //set text
+        if (diaryList.size() < 10) {
+            text_drink_day.setText("0" + diaryList.size());
+        } else {
+            text_drink_day.setText(diaryList.size());
+        }
+
+        for (int i = 0; i < 5; i++) {
+            text_stats_avr[i].setText(String.format("%.1f", average[i]));
+            text_stats_total[i].setText(String.format("%.1f", total[i]));
+        }
+
+
+    }
+
+    private void assignView(View view) {
         text_you_were_drunken = (TextView) view.findViewById(R.id.stats_text_you_were_drunken);
         text_days_in_a_month = (TextView) view.findViewById(R.id.stats_text_days_in_a_month);
         text_drink_day = (TextView) view.findViewById(R.id.stats_text_drink_day);

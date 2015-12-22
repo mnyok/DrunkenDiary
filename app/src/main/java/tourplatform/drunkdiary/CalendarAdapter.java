@@ -19,6 +19,7 @@ package tourplatform.drunkdiary;
 * limitations under the License.
 */
 
+import android.graphics.Color;
 import android.widget.BaseAdapter;
 
 
@@ -37,29 +38,39 @@ import android.widget.TextView;
 public class CalendarAdapter extends BaseAdapter {
     static final int FIRST_DAY_OF_WEEK = 0; // Sunday = 0, Monday = 1
 
+    class ViewHolder {
+        private TextView text_day;
+        private ImageView image_alcohol;
+    }
 
     private Context mContext;
+    private ViewHolder holder;
 
     private java.util.Calendar month;
     private Calendar selectedDate;
-    private ArrayList<String> items;
+    private ArrayList<DiaryData> diaryList;
+    private DiaryData[] drunkenDays;
 
     public CalendarAdapter(Context c, Calendar monthCalendar) {
         month = monthCalendar;
         selectedDate = (Calendar) monthCalendar.clone();
         mContext = c;
         month.set(Calendar.DAY_OF_MONTH, 1);
-        this.items = new ArrayList<String>();
+        this.diaryList = new ArrayList<>();
+        drunkenDays = new DiaryData[32];
         refreshDays();
     }
 
-    public void setItems(ArrayList<String> items) {
-        for (int i = 0; i != items.size(); i++) {
-            if (items.get(i).length() == 1) {
-                items.set(i, "0" + items.get(i));
-            }
+    //TODO: check
+    public void setList(ArrayList<DiaryData> diaryList) {
+        drunkenDays = new DiaryData[32];
+
+        for (int i = 0; i != diaryList.size(); i++) {
+            int day = Integer.parseInt(diaryList.get(i).getDateString(".").substring(8));
+            drunkenDays[day] = diaryList.get(i);
         }
-        this.items = items;
+
+        this.diaryList = diaryList;
     }
 
 
@@ -76,56 +87,81 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     // create a new view for each item referenced by the Adapter
+    // TODO: it's library but... too dirty and complex. change after
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = convertView;
-        TextView text_day;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
-            LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.calendar_item, null);
+            convertView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.item_calendar, null);
+            holder = new ViewHolder();
 
+            //assign each Views
+            assign_views(convertView);
+
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-        text_day = (TextView) v.findViewById(R.id.text_day);
-        text_day.setTypeface(Font.GOTHAM_BOOK);
+
+        holder.text_day.setTypeface(Font.GOTHAM_BOOK);
 
         // disable empty days from the beginning
-        if (days[position].equals("")) {
-            text_day.setClickable(false);
-            text_day.setFocusable(false);
+        if (days[position].equals("0")) {
+            convertView.setClickable(false);
+            convertView.setVisibility(View.INVISIBLE);
+            convertView.setFocusable(false);
         } else {
+            convertView.setVisibility(View.VISIBLE);
             // mark current day as focused
             if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
-                text_day.setBackgroundResource(R.drawable.ic_today);
+                holder.text_day.setBackgroundResource(R.drawable.ic_today);
+            } else {
+                holder.text_day.setBackgroundColor(Color.argb(0 ,255, 255, 255));
             }
         }
-        text_day.setText(days[position]);
+        holder.text_day.setText(days[position]);
 
         // create date string for comparison
-        String date = days[position];
+        int day = Integer.parseInt(days[position]);
 
-        if (date.length() == 1) {
-            date = "0" + date;
-        }
         String monthStr = "" + (month.get(Calendar.MONTH) + 1);
         if (monthStr.length() == 1) {
             monthStr = "0" + monthStr;
         }
 
-        // show icon if date is not empty and it exists in the items array
-        ImageView iw = (ImageView) v.findViewById(R.id.image_alcohol);
-        if (date.length() > 0 && items != null && items.contains(date)) {
-            iw.setVisibility(View.VISIBLE);
+        // show icon if date is not empty and it exists in the diaryList array
+        if (day != 0 && drunkenDays != null
+                && drunkenDays[day] != null) {
+            holder.image_alcohol.setVisibility(View.VISIBLE);
+            switch(drunkenDays[day].getAlcohol()){
+                case SOJU:
+                    holder.image_alcohol.setImageResource(R.drawable.ic_soju);
+                    break;
+                case BEER:
+                    holder.image_alcohol.setImageResource(R.drawable.ic_beer);
+                    break;
+                case SOMAC:
+                    holder.image_alcohol.setImageResource(R.drawable.ic_somac);
+                    break;
+                case MAKGEOLLI:
+                    holder.image_alcohol.setImageResource(R.drawable.ic_makgeolli);
+                    break;
+                case LIQUOR:
+                    holder.image_alcohol.setImageResource(R.drawable.ic_liquor);
+                    break;
+
+            }
         } else {
-            iw.setVisibility(View.INVISIBLE);
+            holder.image_alcohol.setVisibility(View.INVISIBLE);
         }
-        return v;
+        return convertView;
     }
 
     public void refreshDays() {
-        // clear items
-        items.clear();
+        // clear diaryList
+        diaryList.clear();
 
         int lastDay = month.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int firstDay = (int) month.get(Calendar.DAY_OF_WEEK);
+        int firstDay = month.get(Calendar.DAY_OF_WEEK);
 
         // figure size of the array
         if (firstDay == 1) {
@@ -139,11 +175,11 @@ public class CalendarAdapter extends BaseAdapter {
         // populate empty days before first real day
         if (firstDay > 1) {
             for (j = 0; j < firstDay - FIRST_DAY_OF_WEEK; j++) {
-                days[j] = "";
+                days[j] = "0";
             }
         } else {
             for (j = 0; j < FIRST_DAY_OF_WEEK * 6; j++) {
-                days[j] = "";
+                days[j] = "0";
             }
             j = FIRST_DAY_OF_WEEK * 6 + 1; // sunday => 1, monday => 7
         }
@@ -156,6 +192,11 @@ public class CalendarAdapter extends BaseAdapter {
         }
     }
 
-    // references to our items
+    // references to diaryList
     public String[] days;
+
+    private void assign_views(View view) {
+        holder.text_day = (TextView) view.findViewById(R.id.text_day);
+        holder.image_alcohol = (ImageView) view.findViewById(R.id.image_alcohol);
+    }
 }
