@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="2015 DECEMBER"
-            android:textColor="#000000"
+            android:textColor="#525252"
             android:textSize="13dp" />
 
 
@@ -85,8 +85,9 @@
             <LinearLayout
                 android:id="@+id/stats_layout_soju_avr"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -102,7 +103,7 @@
 
                     <TextView
                         android:id="@+id/stats_text_soju_avr"
-                        style="@style/StatsResultText"/>
+                        style="@style/StatsResultText" />
 
                     <TextView
                         android:id="@+id/stats_text_soju_avr_measure"
@@ -111,17 +112,13 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/stats_layout_soju_total"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -145,12 +142,6 @@
                         android:text="병" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -186,6 +177,7 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -201,7 +193,7 @@
 
                     <TextView
                         android:id="@+id/stats_text_beer_avr"
-                        style="@style/StatsResultText"/>
+                        style="@style/StatsResultText" />
 
                     <TextView
                         android:id="@+id/stats_text_beer_avr_measure"
@@ -244,6 +236,7 @@
 
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -273,8 +266,9 @@
             <LinearLayout
                 android:id="@+id/stats_layout_somac_avr"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -290,7 +284,7 @@
 
                     <TextView
                         android:id="@+id/stats_text_somac_avr"
-                        style="@style/StatsResultText"/>
+                        style="@style/StatsResultText" />
 
                     <TextView
                         android:id="@+id/stats_text_somac_avr_measure"
@@ -298,18 +292,13 @@
                         android:text="잔" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/stats_layout_somac_total"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -333,11 +322,6 @@
                         android:text="잔" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
 
             </LinearLayout>
         </LinearLayout>
@@ -372,8 +356,9 @@
             <LinearLayout
                 android:id="@+id/stats_layout_liquor_avr"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -389,7 +374,7 @@
 
                     <TextView
                         android:id="@+id/stats_text_liquor_avr"
-                        style="@style/StatsResultText"/>
+                        style="@style/StatsResultText" />
 
                     <TextView
                         android:id="@+id/stats_text_liquor_avr_measure"
@@ -397,18 +382,13 @@
                         android:text="잔" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/stats_layout_liquor_total"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -432,12 +412,6 @@
                         android:text="잔" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -471,8 +445,9 @@
             <LinearLayout
                 android:id="@+id/stats_layout_makgeolli_avr"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -488,7 +463,7 @@
 
                     <TextView
                         android:id="@+id/stats_text_makgeolli_avr"
-                        style="@style/StatsResultText"/>
+                        style="@style/StatsResultText" />
 
                     <TextView
                         android:id="@+id/stats_text_makgeolli_avr_measure"
@@ -496,18 +471,13 @@
                         android:text="병" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/stats_layout_makgeolli_total"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -531,12 +501,6 @@
                         android:text="병" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -550,7 +514,7 @@
         android:layout_above="@id/stats_layout_stats"
         android:layout_below="@id/stats_layout_month">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -560,14 +524,16 @@
                 android:id="@+id/stats_text_you_were_drunken"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:text="YOU WERE DRUNKEN"
                 android:textColor="#000000"
                 android:textSize="13dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -585,13 +551,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
+
                     android:gravity="center"
                     android:text="DAYS"
                     android:textColor="#000000"
                     android:textSize="25dp" />
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
     <ImageButton

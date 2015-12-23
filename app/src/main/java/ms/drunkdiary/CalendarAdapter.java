@@ -107,10 +107,11 @@ public class CalendarAdapter extends BaseAdapter {
         // disable empty days from the beginning
         if (days[position].equals("0")) {
             convertView.setClickable(false);
-            convertView.setVisibility(View.INVISIBLE);
             convertView.setFocusable(false);
+            holder.text_day.setVisibility(View.INVISIBLE);
+            holder.image_alcohol.setVisibility(View.INVISIBLE);
         } else {
-            convertView.setVisibility(View.VISIBLE);
+            holder.text_day.setVisibility(View.VISIBLE);
             // mark current day as focused
             if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
                 holder.text_day.setBackgroundResource(ms.drunkdiary.R.drawable.ic_today);
@@ -123,10 +124,10 @@ public class CalendarAdapter extends BaseAdapter {
         // create date string for comparison
         int day = Integer.parseInt(days[position]);
 
-        String monthStr = "" + (month.get(Calendar.MONTH) + 1);
-        if (monthStr.length() == 1) {
-            monthStr = "0" + monthStr;
-        }
+//        String monthStr = "" + (month.get(Calendar.MONTH) + 1);
+//        if (monthStr.length() == 1) {
+//            monthStr = "0" + monthStr;
+//        }
 
         // show icon if date is not empty and it exists in the diaryList array
         if (day != 0 && drunkenDays != null

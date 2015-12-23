@@ -38,6 +38,7 @@ public class CalendarFragment extends Fragment {
     public ArrayList<DiaryData> diaryList; // container to show calendar icons(alcohols)
     GridView gridView;
 
+    TextView text_title;
     TextView text_year;
     TextView text_month;
     TextView[] text_week;
@@ -51,6 +52,7 @@ public class CalendarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
         assignView(view);
 
+        text_title.setText("CALENDAR");
         text_year.setTypeface(Font.GOTHAM_BOOK);
         text_month.setTypeface(Font.GOTHAM_LIGHT);
         bt_left.setOnClickListener(onClickListener);
@@ -215,6 +217,7 @@ public class CalendarFragment extends Fragment {
 
 
     private void assignView(View view) {
+        text_title = (TextView) getActivity().findViewById(R.id.actionbar_title);
 
         bt_left = (ImageButton) view.findViewById(R.id.bt_left);
         bt_right = (ImageButton) view.findViewById(R.id.bt_right);

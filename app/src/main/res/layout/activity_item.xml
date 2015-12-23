@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:onClick="mOnClick"
     android:background="#F8F8F8">
 
     <include
@@ -137,15 +139,16 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/item_layout_bottle_image"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp">
+                        android:layout_marginTop="10dp">
 
                         <ImageButton
                             android:id="@+id/item_bt_plus_bottle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginRight="4dp"
                             android:background="@null"
                             android:onClick="mOnClick"
+                            android:padding="4dp"
                             android:src="@drawable/btn_plus_xml" />
 
                         <ImageButton
@@ -154,6 +157,7 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:onClick="mOnClick"
+                            android:padding="4dp"
                             android:src="@drawable/btn_minus_xml" />
                     </LinearLayout>
                 </RelativeLayout>
@@ -196,15 +200,16 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/item_layout_glass_image"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp">
+                        android:layout_marginTop="10dp">
 
                         <ImageButton
                             android:id="@+id/item_bt_plus_glass"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginRight="4dp"
                             android:background="@null"
                             android:onClick="mOnClick"
+                            android:padding="4dp"
                             android:src="@drawable/btn_plus_xml" />
 
                         <ImageButton
@@ -213,6 +218,7 @@
                             android:layout_height="wrap_content"
                             android:background="@null"
                             android:onClick="mOnClick"
+                            android:padding="4dp"
                             android:src="@drawable/btn_minus_xml" />
                     </LinearLayout>
                 </RelativeLayout>

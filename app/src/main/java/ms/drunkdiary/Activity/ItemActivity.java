@@ -1,10 +1,12 @@
 package ms.drunkdiary.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -219,6 +221,13 @@ public class ItemActivity extends Activity {
     }
 
     public void mOnClick(View view) {
+        try {
+            //close keyboard
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e){
+            Log.e("Keyboard error", "Could not execute method of the activity");
+        }
         switch (view.getId()) {
             case R.id.bt_back:
                 finishWithResult("back");
@@ -296,6 +305,13 @@ public class ItemActivity extends Activity {
     }
 
     public void mOnAlcoholClick(View view) {
+        try {
+            //close keyboard
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e){
+            Log.e("Keyboard error", "Could not execute method of the activity");
+        }
         switch (view.getId()) {
             case R.id.bt_soju:
                 setAlcoholButtonImageToDefault();
@@ -357,6 +373,13 @@ public class ItemActivity extends Activity {
     }
 
     public void onRadioClick(View view) {
+        try {
+            //close keyboard
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e){
+            Log.e("Keyboard error", "Could not execute method of the activity");
+        }
         switch (view.getId()) {
             case R.id.radio_ok:
                 condition = Condition.OK;
