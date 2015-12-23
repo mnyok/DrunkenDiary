@@ -1,4 +1,4 @@
-package tourplatform.drunkdiary;
+package ms.drunkdiary;
 
 import android.content.Context;
 import android.util.Log;
@@ -65,7 +65,7 @@ public class DiaryAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                    .inflate(R.layout.item_diary, parent, false);
+                    .inflate(ms.drunkdiary.R.layout.item_diary, parent, false);
 
             holder = new ViewHolder();
             //assign each Views
@@ -86,19 +86,19 @@ public class DiaryAdapter extends BaseAdapter {
 
             switch(listElement.getCondition()) {
                 case OK:
-                    holder.image_emoticon.setImageResource(R.drawable.diary_ic_ok);
+                    holder.image_emoticon.setImageResource(ms.drunkdiary.R.drawable.diary_ic_ok);
                     break;
                 case SOSO:
-                    holder.image_emoticon.setImageResource(R.drawable.diary_ic_soso);
+                    holder.image_emoticon.setImageResource(ms.drunkdiary.R.drawable.diary_ic_soso);
                     break;
                 case DISGUSTED:
-                    holder.image_emoticon.setImageResource(R.drawable.diary_ic_disgusted);
+                    holder.image_emoticon.setImageResource(ms.drunkdiary.R.drawable.diary_ic_disgusted);
                     break;
                 case VOMIT:
-                    holder.image_emoticon.setImageResource(R.drawable.diary_ic_vomit);
+                    holder.image_emoticon.setImageResource(ms.drunkdiary.R.drawable.diary_ic_vomit);
                     break;
                 case DEAD:
-                    holder.image_emoticon.setImageResource(R.drawable.diary_ic_dead);
+                    holder.image_emoticon.setImageResource(ms.drunkdiary.R.drawable.diary_ic_dead);
                     break;
                 default:
                     Log.e("diary error", "wrong condition");
@@ -106,19 +106,19 @@ public class DiaryAdapter extends BaseAdapter {
 
             switch(listElement.getAlcohol()) {
                 case SOJU:
-                    holder.image_alcohol.setImageResource(R.drawable.diary_ic_soju);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.diary_ic_soju);
                     break;
                 case BEER:
-                    holder.image_alcohol.setImageResource(R.drawable.diary_ic_beer);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.diary_ic_beer);
                     break;
                 case SOMAC:
-                    holder.image_alcohol.setImageResource(R.drawable.diary_ic_somac);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.diary_ic_somac);
                     break;
                 case MAKGEOLLI:
-                    holder.image_alcohol.setImageResource(R.drawable.diary_ic_makgeolli);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.diary_ic_makgeolli);
                     break;
                 case LIQUOR:
-                    holder.image_alcohol.setImageResource(R.drawable.diary_ic_liquor);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.diary_ic_liquor);
                     break;
                 default:
                     Log.e("diary error", "wrong alcohol");
@@ -129,10 +129,10 @@ public class DiaryAdapter extends BaseAdapter {
     }
 
     private void assign_views(View view) {
-        holder.text_date = (TextView) view.findViewById(R.id.diary_text_date);
-        holder.text_note = (TextView) view.findViewById(R.id.diary_text_note);
-        holder.image_alcohol = (ImageView) view.findViewById(R.id.diary_image_alcohol);
-        holder.image_emoticon = (ImageView) view.findViewById(R.id.diary_image_emoticon);
+        holder.text_date = (TextView) view.findViewById(ms.drunkdiary.R.id.diary_text_date);
+        holder.text_note = (TextView) view.findViewById(ms.drunkdiary.R.id.diary_text_note);
+        holder.image_alcohol = (ImageView) view.findViewById(ms.drunkdiary.R.id.diary_image_alcohol);
+        holder.image_emoticon = (ImageView) view.findViewById(ms.drunkdiary.R.id.diary_image_emoticon);
     }
 
 }

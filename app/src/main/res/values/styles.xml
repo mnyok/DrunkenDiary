@@ -22,5 +22,36 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="StatsResultTitle" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">7dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+    </style>
+
+    <style name="StatsResultText" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">0.0</item>
+        <item name="android:textSize">19dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="StatsResultMeasure" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">#FEFEFE</item>
+        <item name="android:layout_marginLeft">2dp</item>
+    </style>
+
+
+
 
 </resources>

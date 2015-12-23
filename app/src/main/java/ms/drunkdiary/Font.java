@@ -1,4 +1,4 @@
-package tourplatform.drunkdiary;
+package ms.drunkdiary;
 
 import android.graphics.Typeface;
 

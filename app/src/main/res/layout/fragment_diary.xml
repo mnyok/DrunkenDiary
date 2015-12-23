@@ -11,6 +11,7 @@
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
         android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:divider="@null"
         android:dividerHeight="5dp"/>
 </LinearLayout>

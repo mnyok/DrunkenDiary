@@ -15,7 +15,7 @@
         android:button="@null"
         android:onClick="mOnClick"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_calendar_xml" />
+        android:src="@drawable/ic_calendar_pressed" />
 
     <ImageButton
         android:id="@+id/bottombar_bt_diary"

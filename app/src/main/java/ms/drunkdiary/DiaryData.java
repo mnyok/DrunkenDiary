@@ -1,11 +1,6 @@
-package tourplatform.drunkdiary;
+package ms.drunkdiary;
 
-import android.util.Log;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by orc12 on 2015-12-21.

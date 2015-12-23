@@ -1,4 +1,4 @@
-package tourplatform.drunkdiary.Activity;
+package ms.drunkdiary.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,11 +12,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import tourplatform.drunkdiary.Alcohol;
-import tourplatform.drunkdiary.Condition;
-import tourplatform.drunkdiary.DiaryData;
-import tourplatform.drunkdiary.Font;
-import tourplatform.drunkdiary.R;
+import ms.drunkdiary.Alcohol;
+import ms.drunkdiary.Condition;
+import ms.drunkdiary.DiaryData;
+import ms.drunkdiary.Font;
+import ms.drunkdiary.R;
 
 /**
  * Created by orc12 on 2015-12-05.
@@ -39,6 +39,10 @@ public class ItemActivity extends Activity {
     ImageView image_glass;
     TextView text_bottle;
     TextView text_glass;
+
+    ImageButton bt_calendar;
+    ImageButton bt_diary;
+    ImageButton bt_stats;
 
     EditText et_note;
 
@@ -161,8 +165,8 @@ public class ItemActivity extends Activity {
                 else image_bottle.setImageResource(R.drawable.icon_big_makgeolli);
                 break;
             case LIQUOR:
-                if (fill) image_bottle.setImageResource(R.drawable.icon_big_liquor_pressed);
-                else image_bottle.setImageResource(R.drawable.icon_big_liquor);
+                if (fill) image_bottle.setImageResource(R.drawable.icon_big_liquor_glass_pressed);
+                else image_bottle.setImageResource(R.drawable.icon_big_liquor_glass);
                 break;
         }
     }
@@ -197,8 +201,7 @@ public class ItemActivity extends Activity {
                 else image_glass.setImageResource(R.drawable.icon_big_makgeolli_bowl);
                 break;
             case LIQUOR:
-                if (fill) image_glass.setImageResource(R.drawable.icon_big_liquor_glass_pressed);
-                else image_glass.setImageResource(R.drawable.icon_big_liquor_glass);
+                Log.e("setGlassImage", "somac doesn't have glass");
                 break;
         }
     }
@@ -224,9 +227,13 @@ public class ItemActivity extends Activity {
                 finishWithResult("calendar");
                 break;
             case R.id.bottombar_bt_diary:
+                bt_calendar.setImageResource(R.drawable.ic_calendar);
+                bt_diary.setImageResource(R.drawable.ic_diary_pressed);
                 finishWithResult("diary");
                 break;
             case R.id.bottombar_bt_stats:
+                bt_calendar.setImageResource(R.drawable.ic_calendar);
+                bt_stats.setImageResource(R.drawable.ic_stats_pressed);
                 finishWithResult("stats");
                 break;
             case R.id.bt_save:
@@ -339,12 +346,10 @@ public class ItemActivity extends Activity {
             case R.id.bt_liquor:
                 setAlcoholButtonImageToDefault();
                 bt_liquor.setBackgroundResource(R.drawable.item_btn_pressed_liquor);
-                layout_glass.setVisibility(View.VISIBLE);
-                text_glass.setVisibility(View.INVISIBLE);
+                layout_glass.setVisibility(View.GONE);
                 text_bottle.setVisibility(View.INVISIBLE);
                 selected_alcohol = Alcohol.LIQUOR;
-                image_bottle.setImageResource(R.drawable.icon_big_liquor);
-                image_glass.setImageResource(R.drawable.icon_big_liquor_glass);
+                image_bottle.setImageResource(R.drawable.icon_big_liquor_glass);
                 bottle = 0;
                 glass = 0;
                 break;
@@ -389,6 +394,10 @@ public class ItemActivity extends Activity {
         image_glass = (ImageView) findViewById(R.id.item_glass);
         text_bottle = (TextView) findViewById(R.id.text_bottle);
         text_glass = (TextView) findViewById(R.id.text_glass);
+
+        bt_calendar = (ImageButton)findViewById(R.id.bottombar_bt_calendar);
+        bt_diary = (ImageButton)findViewById(R.id.bottombar_bt_diary);
+        bt_stats = (ImageButton)findViewById(R.id.bottombar_bt_stats);
     }
 
 }

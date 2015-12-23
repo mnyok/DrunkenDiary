@@ -39,6 +39,7 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/tab_bg"/>
 
+
         <!--<include-->
         <!--android:id="@+id/tabs"-->
         <!--layout="@layout/bottombar"-->

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tourplatform.drunkdiary" >
+    package="ms.drunkdiary" >
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name="ms.drunkdiary.Activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/IntroTheme">
             <intent-filter>
@@ -20,12 +20,12 @@
         </activity>
 
         <activity
-            android:name=".Activity.MainActivity"
+            android:name="ms.drunkdiary.Activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".Activity.ItemActivity"
+            android:name="ms.drunkdiary.Activity.ItemActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

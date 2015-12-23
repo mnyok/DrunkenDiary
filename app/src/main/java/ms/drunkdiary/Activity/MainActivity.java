@@ -1,24 +1,20 @@
-package tourplatform.drunkdiary.Activity;
+package ms.drunkdiary.Activity;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import tourplatform.drunkdiary.DBHelper;
-import tourplatform.drunkdiary.Font;
-import tourplatform.drunkdiary.Fragment.CalendarFragment;
-import tourplatform.drunkdiary.Fragment.DiaryFragment;
-import tourplatform.drunkdiary.Fragment.StatsFragment;
-import tourplatform.drunkdiary.R;
+import ms.drunkdiary.DBHelper;
+import ms.drunkdiary.Font;
+import ms.drunkdiary.Fragment.CalendarFragment;
+import ms.drunkdiary.Fragment.DiaryFragment;
+import ms.drunkdiary.Fragment.StatsFragment;
+import ms.drunkdiary.R;
 
 public class MainActivity extends FragmentActivity {
 

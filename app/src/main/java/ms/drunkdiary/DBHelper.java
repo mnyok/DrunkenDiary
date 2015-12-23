@@ -1,4 +1,4 @@
-package tourplatform.drunkdiary;
+package ms.drunkdiary;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -95,14 +95,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public DiaryData getItem(String date) {
         SQLiteDatabase db = this.getReadableDatabase();
         date = date.replace(".", "-");
-        Log.i("SQLite", "getItem : " + date);
+
+        //day is smaller then 10
+        if(date.split("[-]")[2].substring(0,1).equals("0")){
+            date = date.substring(0, 8) + date.substring(9);
+        }
 
         Cursor alcoholCursor = db.query(TABLE_ALCOHOL,
                 new String[]{ALCOHOL_DATE, ALCOHOL_KIND, ALCOHOL_BOTTLE, ALCOHOL_GLASS},
                 ALCOHOL_DATE + "=?",
                 new String[]{String.valueOf(date)}, null, null, null, null);
-        if (alcoholCursor != null)
+        if (alcoholCursor != null) {
             alcoholCursor.moveToFirst();
+        }
 
         Cursor diaryCursor = db.query(TABLE_DIARY,
                 new String[]{DIARY_DATE, DIARY_CONDITION, DIARY_NOTE},
@@ -110,18 +115,24 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(date)}, null, null, null, null);
         if (diaryCursor != null) {
             diaryCursor.moveToFirst();
-
         }
 
+        DiaryData diaryData = null;
         if (diaryCursor.getCount() != 0 && alcoholCursor.getCount() != 0) {
-            return new DiaryData(alcoholCursor.getString(0),
+            Log.i("SQLite getItem", alcoholCursor.getString(0) + " " + alcoholCursor.getString(1)
+                    + " " + diaryCursor.getString(1) + " " + diaryCursor.getString(2)
+                    + " " + alcoholCursor.getInt(2) + " " + alcoholCursor.getInt(3));
+            diaryData = new DiaryData(alcoholCursor.getString(0),
                     Condition.valueOf(diaryCursor.getString(1)),
                     Alcohol.valueOf(alcoholCursor.getString(1)),
                     diaryCursor.getString(2),
                     alcoholCursor.getInt(2),
                     alcoholCursor.getInt(3));
         }
-        return null;
+        alcoholCursor.close();
+        diaryCursor.close();
+        db.close();
+        return diaryData;
     }
 
     public ArrayList<DiaryData> getAlcoholList(String month) {
@@ -173,7 +184,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         Cursor diaryCursor = db.query(TABLE_DIARY,
-                new String[]{DIARY_DATE , DIARY_CONDITION, DIARY_NOTE},
+                new String[]{DIARY_DATE, DIARY_CONDITION, DIARY_NOTE},
                 null, null, null, null, DIARY_DATE + " DESC", null);
         if (diaryCursor != null) {
             diaryCursor.moveToFirst();
@@ -235,6 +246,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteItem(String date) {
         //replace date expression
         date = date.replace(".", "-");
+
+        //day is smaller then 10
+        if(date.split("[-]")[2].substring(0,1).equals("0")){
+            date = date.substring(0, 8) + date.substring(9);
+        }
+
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ALCOHOL, ALCOHOL_DATE + " = ?",
                 new String[]{String.valueOf(date)});

@@ -1,4 +1,4 @@
-package tourplatform.drunkdiary.Fragment;
+package ms.drunkdiary.Fragment;
 
 
 import android.content.Intent;
@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import tourplatform.drunkdiary.Activity.ItemActivity;
-import tourplatform.drunkdiary.Activity.MainActivity;
-import tourplatform.drunkdiary.CalendarAdapter;
-import tourplatform.drunkdiary.DiaryData;
-import tourplatform.drunkdiary.Font;
-import tourplatform.drunkdiary.R;
+import ms.drunkdiary.Activity.ItemActivity;
+import ms.drunkdiary.Activity.MainActivity;
+import ms.drunkdiary.CalendarAdapter;
+import ms.drunkdiary.DiaryData;
+import ms.drunkdiary.Font;
+import ms.drunkdiary.R;
 
 /**
  * Created by orc12 on 2015-12-05.
@@ -62,7 +62,6 @@ public class CalendarFragment extends Fragment {
         }
 
         month = Calendar.getInstance();
-//        getActivity().onNewIntent(getActivity().getIntent());
         diaryList = new ArrayList<>();
         adapter = new CalendarAdapter(getActivity(), month);
         gridView.setAdapter(adapter);

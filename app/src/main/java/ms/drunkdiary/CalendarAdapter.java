@@ -1,4 +1,4 @@
-package tourplatform.drunkdiary;
+package ms.drunkdiary;
 
 /**
  * Created by orc12 on 2015-12-04.
@@ -91,7 +91,7 @@ public class CalendarAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {  // if it's not recycled, initialize some attributes
             convertView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                .inflate(R.layout.item_calendar, null);
+                .inflate(ms.drunkdiary.R.layout.item_calendar, null);
             holder = new ViewHolder();
 
             //assign each Views
@@ -113,7 +113,7 @@ public class CalendarAdapter extends BaseAdapter {
             convertView.setVisibility(View.VISIBLE);
             // mark current day as focused
             if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
-                holder.text_day.setBackgroundResource(R.drawable.ic_today);
+                holder.text_day.setBackgroundResource(ms.drunkdiary.R.drawable.ic_today);
             } else {
                 holder.text_day.setBackgroundColor(Color.argb(0 ,255, 255, 255));
             }
@@ -134,19 +134,19 @@ public class CalendarAdapter extends BaseAdapter {
             holder.image_alcohol.setVisibility(View.VISIBLE);
             switch(drunkenDays[day].getAlcohol()){
                 case SOJU:
-                    holder.image_alcohol.setImageResource(R.drawable.ic_soju);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_soju);
                     break;
                 case BEER:
-                    holder.image_alcohol.setImageResource(R.drawable.ic_beer);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_beer);
                     break;
                 case SOMAC:
-                    holder.image_alcohol.setImageResource(R.drawable.ic_somac);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_somac);
                     break;
                 case MAKGEOLLI:
-                    holder.image_alcohol.setImageResource(R.drawable.ic_makgeolli);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_makgeolli);
                     break;
                 case LIQUOR:
-                    holder.image_alcohol.setImageResource(R.drawable.ic_liquor);
+                    holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_liquor);
                     break;
 
             }
@@ -196,7 +196,7 @@ public class CalendarAdapter extends BaseAdapter {
     public String[] days;
 
     private void assign_views(View view) {
-        holder.text_day = (TextView) view.findViewById(R.id.text_day);
-        holder.image_alcohol = (ImageView) view.findViewById(R.id.image_alcohol);
+        holder.text_day = (TextView) view.findViewById(ms.drunkdiary.R.id.text_day);
+        holder.image_alcohol = (ImageView) view.findViewById(ms.drunkdiary.R.id.image_alcohol);
     }
 }
