@@ -20,6 +20,7 @@ package ms.drunkdiary;
 */
 
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.BaseAdapter;
 
 
@@ -91,7 +92,7 @@ public class CalendarAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {  // if it's not recycled, initialize some attributes
             convertView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                .inflate(ms.drunkdiary.R.layout.item_calendar, null);
+                    .inflate(ms.drunkdiary.R.layout.item_calendar, null);
             holder = new ViewHolder();
 
             //assign each Views
@@ -116,10 +117,17 @@ public class CalendarAdapter extends BaseAdapter {
             if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
                 holder.text_day.setBackgroundResource(ms.drunkdiary.R.drawable.ic_today);
             } else {
-                holder.text_day.setBackgroundColor(Color.argb(0 ,255, 255, 255));
+                holder.text_day.setBackgroundColor(Color.argb(0, 255, 255, 255));
+            }
+            holder.text_day.setText(days[position]);
+
+            //set sunday text color
+            if (position % 7 == 0) {
+                holder.text_day.setTextColor(Color.rgb(204, 85, 85));
+            } else {
+                holder.text_day.setTextColor(Color.rgb(0, 0, 0));
             }
         }
-        holder.text_day.setText(days[position]);
 
         // create date string for comparison
         int day = Integer.parseInt(days[position]);
@@ -133,7 +141,7 @@ public class CalendarAdapter extends BaseAdapter {
         if (day != 0 && drunkenDays != null
                 && drunkenDays[day] != null) {
             holder.image_alcohol.setVisibility(View.VISIBLE);
-            switch(drunkenDays[day].getAlcohol()){
+            switch (drunkenDays[day].getAlcohol()) {
                 case SOJU:
                     holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_soju);
                     break;

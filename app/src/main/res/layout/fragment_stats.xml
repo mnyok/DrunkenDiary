@@ -79,7 +79,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="소주"
+                android:text="쏘주"
                 android:textColor="#FFFFFF" />
 
             <LinearLayout
@@ -260,7 +260,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="소맥"
+                android:text="쏘맥"
                 android:textColor="#FFFFFF" />
 
             <LinearLayout
@@ -541,7 +541,7 @@
                     android:id="@+id/stats_text_drink_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="08"
+                    android:text="00"
                     android:textColor="#000000"
                     android:textSize="76dp" />
 

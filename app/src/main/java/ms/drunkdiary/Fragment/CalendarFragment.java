@@ -69,67 +69,9 @@ public class CalendarFragment extends Fragment {
         gridView.setAdapter(adapter);
         handler = new Handler();
         handler.post(calendarUpdater);
+        text_month.setText(android.text.format.DateFormat.format("M", month));
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                TextView date = (TextView) v.findViewById(R.id.text_day);
-                if (date != null && !date.getText().equals("")) {
-
-                    Intent intent = new Intent(getActivity(), ItemActivity.class);
-                    String day = date.getText().toString();
-                    if (day.length() == 1) {
-                        day = "0" + day;
-                    }
-                    // return chosen date as string format
-                    Log.i("Clicked date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
-                    intent.putExtra("date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
-
-                    //요일 계산
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-                    Date nDate = null;
-                    try {
-                        nDate = dateFormat.parse(android.text.format.DateFormat.format("yyyy.MM.dd", month) + "." + day);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                    Calendar cal = Calendar.getInstance();
-                    assert nDate != null;
-                    cal.setTime(nDate);
-                    int dayNum = cal.get(Calendar.DAY_OF_WEEK);
-
-                    String dayOfWeek = null;
-                    switch (dayNum) {
-                        case 1:
-                            dayOfWeek = "SUN";
-                            break;
-                        case 2:
-                            dayOfWeek = "MON";
-                            break;
-                        case 3:
-                            dayOfWeek = "TUE";
-                            break;
-                        case 4:
-                            dayOfWeek = "WEN";
-                            break;
-                        case 5:
-                            dayOfWeek = "THU";
-                            break;
-                        case 6:
-                            dayOfWeek = "FRI";
-                            break;
-                        case 7:
-                            dayOfWeek = "SAT";
-                            break;
-                    }
-                    intent.putExtra("dayOfWeek", dayOfWeek);
-
-                    startActivityForResult(intent, ItemActivity.CODE);
-                    getActivity().overridePendingTransition(R.anim.slide_in_up, android.R.anim.fade_out);
-                }
-
-            }
-        });
+        gridView.setOnItemClickListener(onItemClickListener);
 
         return view;
     }
@@ -211,6 +153,67 @@ public class CalendarFragment extends Fragment {
                         month.set(Calendar.MONTH, month.get(Calendar.MONTH) + 1);
                     }
                     refreshCalendar();
+            }
+        }
+    };
+
+    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            TextView date = (TextView) view.findViewById(R.id.text_day);
+            if (date != null && !date.getText().equals("")) {
+
+                Intent intent = new Intent(getActivity(), ItemActivity.class);
+                String day = date.getText().toString();
+                if (day.length() == 1) {
+                    day = "0" + day;
+                }
+                // return chosen date as string format
+                Log.i("Clicked date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
+                intent.putExtra("date", android.text.format.DateFormat.format("yyyy.MM", month) + "." + day);
+
+                //요일 계산
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+                Date nDate = null;
+                try {
+                    nDate = dateFormat.parse(android.text.format.DateFormat.format("yyyy.MM.dd", month) + "." + day);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Calendar cal = Calendar.getInstance();
+                assert nDate != null;
+                cal.setTime(nDate);
+                int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+
+                String dayOfWeek = null;
+                switch (dayNum) {
+                    case 1:
+                        dayOfWeek = "SUN";
+                        break;
+                    case 2:
+                        dayOfWeek = "MON";
+                        break;
+                    case 3:
+                        dayOfWeek = "TUE";
+                        break;
+                    case 4:
+                        dayOfWeek = "WEN";
+                        break;
+                    case 5:
+                        dayOfWeek = "THU";
+                        break;
+                    case 6:
+                        dayOfWeek = "FRI";
+                        break;
+                    case 7:
+                        dayOfWeek = "SAT";
+                        break;
+                }
+                intent.putExtra("dayOfWeek", dayOfWeek);
+
+                startActivityForResult(intent, ItemActivity.CODE);
+                getActivity().overridePendingTransition(R.anim.slide_in_up, android.R.anim.fade_out);
             }
         }
     };
