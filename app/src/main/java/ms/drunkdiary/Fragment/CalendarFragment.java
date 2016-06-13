@@ -95,8 +95,6 @@ public class CalendarFragment extends Fragment {
 
             }
         }
-
-
     }
 
 
@@ -157,6 +155,8 @@ public class CalendarFragment extends Fragment {
         }
     };
 
+    //달력에서 날짜 클릭했을 때 실행
+    //날짜 정보를 전달하면서 액티비티 실행
     AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

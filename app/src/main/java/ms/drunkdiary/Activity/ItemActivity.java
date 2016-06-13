@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import ms.drunkdiary.Alcohol;
 import ms.drunkdiary.Condition;
 import ms.drunkdiary.DiaryData;
 import ms.drunkdiary.Font;
@@ -25,6 +24,13 @@ import ms.drunkdiary.R;
  */
 public class ItemActivity extends Activity {
     public static final int CODE = 1;
+
+    public static final int SOJU = 0;
+    public static final int BEER = 1;
+    public static final int SOMAC = 2;
+    public static final int MAKGEOLLI = 3;
+    public static final int LIQUOR = 4;
+
 
     ImageButton bt_back;
     TextView text_title;
@@ -53,10 +59,10 @@ public class ItemActivity extends Activity {
 
     //date of today (yyyy.MM.dd)
     String date;
-    Alcohol selected_alcohol = null;
+    int selected_alcohol = 0;
     Condition condition = Condition.OK;
-    int bottle;
-    int glass;
+    int[] bottle = new int[5];
+    int[] glass = new int[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,6 @@ public class ItemActivity extends Activity {
         setContentView(R.layout.activity_item);
 
         assignView();
-
 
         bt_back.setVisibility(View.VISIBLE);
         text_drink_condition.setTypeface(Font.GOTHAM_MIDIUM);
@@ -81,56 +86,73 @@ public class ItemActivity extends Activity {
         bt_soju.performClick();
 
         //load saved data from database
-        DiaryData savedData = MainActivity.dbHelper.getItem(date);
-        if (savedData != null) {
-            update = true;
+        DiaryData[] savedData = MainActivity.dbHelper.getItemList(date);
 
-            Log.i("item", savedData.getDateString(".") + " " + savedData.getCondition().name()
-                    + " " + savedData.getAlcohol().name()
-                    + " " + savedData.getBottle()
-                    + " " + savedData.getGlass()
-                    + " " + savedData.getNote());
+        for (int i = 4; i >= 0; i--) {
+            if (savedData[i] == null) {
+                bottle[i] = 0;
+                glass[i] = 0;
+            } else {
+                update = true;
 
-            switch (savedData.getAlcohol()) {
-                case SOJU:
-                    bt_soju.performClick();
-                    break;
-                case BEER:
-                    bt_beer.performClick();
-                    break;
-                case SOMAC:
-                    bt_somac.performClick();
-                    break;
-                case MAKGEOLLI:
-                    bt_makgeolli.performClick();
-                    break;
-                case LIQUOR:
-                    bt_liquor.performClick();
-                    break;
+//            Log.i("item", savedData.getDateString(".") + " " + savedData.getCondition().name()
+//                    + " " + savedData.getAlcohol().name()
+//                    + " " + savedData.getBottle()
+//                    + " " + savedData.getGlass()
+//                    + " " + savedData.getNote());
+
+
+                et_note.setText(savedData[i].getNote());
+                switch (savedData[i].getCondition()) {
+                    case OK:
+                        findViewById(R.id.radio_ok).performClick();
+                        break;
+                    case SOSO:
+                        findViewById(R.id.radio_soso).performClick();
+                        break;
+                    case DISGUSTED:
+                        findViewById(R.id.radio_disgusted).performClick();
+                        break;
+                    case VOMIT:
+                        findViewById(R.id.radio_vomit).performClick();
+                        break;
+                    case DEAD:
+                        findViewById(R.id.radio_dead).performClick();
+                        break;
+                }
+
+                bottle[i] = savedData[i].getBottle();
+                glass[i] = savedData[i].getGlass();
+
+                //click
+                switch (savedData[i].getAlcohol()) {
+                    case SOJU:
+                        bt_soju.performClick();
+                        selected_alcohol = 0;
+                        break;
+                    case BEER:
+                        bt_beer.performClick();
+                        selected_alcohol = 1;
+                        break;
+                    case SOMAC:
+                        bt_somac.performClick();
+                        selected_alcohol = 2;
+                        break;
+                    case MAKGEOLLI:
+                        bt_makgeolli.performClick();
+                        selected_alcohol = 3;
+                        break;
+                    case LIQUOR:
+                        bt_liquor.performClick();
+                        selected_alcohol = 4;
+                        break;
+
+                }
             }
-            switch (savedData.getCondition()) {
-                case OK:
-                    findViewById(R.id.radio_ok).performClick();
-                    break;
-                case SOSO:
-                    findViewById(R.id.radio_soso).performClick();
-                    break;
-                case DISGUSTED:
-                    findViewById(R.id.radio_disgusted).performClick();
-                    break;
-                case VOMIT:
-                    findViewById(R.id.radio_vomit).performClick();
-                    break;
-                case DEAD:
-                    findViewById(R.id.radio_dead).performClick();
-                    break;
-            }
-            bottle = savedData.getBottle();
-            refreshBottleLayout();
-            glass = savedData.getGlass();
-            refreshGlassLayout();
-            et_note.setText(savedData.getNote());
+
         }
+        refreshBottleLayout();
+        refreshGlassLayout();
     }
 
 
@@ -144,12 +166,11 @@ public class ItemActivity extends Activity {
         intent.putExtra("clicked", result);
         setResult(CODE, intent);
         finish();
-        //TODO: change animation
         overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_down);
     }
 
-    public void setBottleImage(Alcohol alcohol, boolean fill) {
-        switch (selected_alcohol) {
+    public void setBottleImage(int alcohol, boolean fill) {
+        switch (alcohol) {
             case SOJU:
                 if (fill) image_bottle.setImageResource(R.drawable.icon_big_soju_pressed);
                 else image_bottle.setImageResource(R.drawable.icon_big_soju);
@@ -174,9 +195,9 @@ public class ItemActivity extends Activity {
     }
 
     public void refreshBottleLayout() {
-        text_bottle.setText(String.valueOf(bottle));
+        text_bottle.setText(String.valueOf(bottle[selected_alcohol]));
 
-        if (bottle == 0) {
+        if (bottle[selected_alcohol] == 0) {
             setBottleImage(selected_alcohol, false);
             text_bottle.setVisibility(View.INVISIBLE);
         } else {
@@ -185,7 +206,7 @@ public class ItemActivity extends Activity {
         }
     }
 
-    public void setGlassImage(Alcohol alcohol, boolean fill) {
+    public void setGlassImage(boolean fill) {
         switch (selected_alcohol) {
             case SOJU:
                 if (fill) image_glass.setImageResource(R.drawable.icon_big_soju_glass_pressed);
@@ -209,13 +230,13 @@ public class ItemActivity extends Activity {
     }
 
     public void refreshGlassLayout() {
-        text_glass.setText(String.valueOf(glass));
+        text_glass.setText(String.valueOf(glass[selected_alcohol]));
 
-        if (glass == 0) {
-            setGlassImage(selected_alcohol, false);
+        if (glass[selected_alcohol] == 0) {
+            setGlassImage(false);
             text_glass.setVisibility(View.INVISIBLE);
         } else {
-            setGlassImage(selected_alcohol, true);
+            setGlassImage(true);
             text_glass.setVisibility(View.VISIBLE);
         }
     }
@@ -225,7 +246,7 @@ public class ItemActivity extends Activity {
             //close keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e("Keyboard error", "Could not execute method of the activity");
         }
         switch (view.getId()) {
@@ -246,18 +267,20 @@ public class ItemActivity extends Activity {
                 finishWithResult("stats");
                 break;
             case R.id.bt_save:
-                DiaryData diaryData = new DiaryData(
-                        date,
-                        condition,
-                        selected_alcohol,
-                        et_note.getText().toString(),
-                        bottle,
-                        glass);
-                if(update){
-                    MainActivity.dbHelper.updateItem(diaryData);
-                } else {
-                    MainActivity.dbHelper.addItem(diaryData);
+                for (int i = 0; i < 5; i++) {
+                    DiaryData diaryData = new DiaryData(
+                            date,
+                            condition,
+                            i,
+                            et_note.getText().toString(),
+                            bottle[i],
+                            glass[i]);
+                    if (update) {
+                        MainActivity.dbHelper.updateItem(diaryData);
+                    } else {
+                        MainActivity.dbHelper.addItem(diaryData);
 
+                    }
                 }
                 finishWithResult("back");
                 break;
@@ -266,32 +289,30 @@ public class ItemActivity extends Activity {
                 finishWithResult("back");
                 break;
             case R.id.item_bt_plus_bottle:
-                bottle = (bottle + 1) % 10;
+                bottle[selected_alcohol] = (bottle[selected_alcohol] + 1) % 10;
                 refreshBottleLayout();
                 break;
             case R.id.item_bt_minus_bottle:
-                if (bottle == 0) {
-                    bottle = bottle + 9;
+                if (bottle[selected_alcohol] == 0) {
+                    bottle[selected_alcohol] = bottle[selected_alcohol] + 9;
                 } else {
-                    bottle = (bottle - 1) % 10;
+                    bottle[selected_alcohol] = (bottle[selected_alcohol] - 1) % 10;
                 }
                 refreshBottleLayout();
                 break;
             case R.id.item_bt_plus_glass:
-                glass = (glass + 1) % 10;
+                glass[selected_alcohol] = (glass[selected_alcohol] + 1) % 10;
                 refreshGlassLayout();
                 break;
             case R.id.item_bt_minus_glass:
 
-                if (glass == 0) {
-                    glass = glass + 9;
+                if (glass[selected_alcohol] == 0) {
+                    glass[selected_alcohol] = glass[selected_alcohol] + 9;
                 } else {
-                    glass = (glass - 1) % 10;
+                    glass[selected_alcohol] = (glass[selected_alcohol] - 1) % 10;
                 }
                 refreshGlassLayout();
                 break;
-
-
         }
     }
 
@@ -301,7 +322,6 @@ public class ItemActivity extends Activity {
         bt_somac.setBackgroundResource(R.drawable.item_btn_somac);
         bt_makgeolli.setBackgroundResource(R.drawable.item_btn_makgeolli);
         bt_liquor.setBackgroundResource(R.drawable.item_btn_liquor);
-
     }
 
     public void mOnAlcoholClick(View view) {
@@ -309,7 +329,7 @@ public class ItemActivity extends Activity {
             //close keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e("Keyboard error", "Could not execute method of the activity");
         }
         switch (view.getId()) {
@@ -319,11 +339,11 @@ public class ItemActivity extends Activity {
                 layout_glass.setVisibility(View.VISIBLE);
                 text_glass.setVisibility(View.INVISIBLE);
                 text_bottle.setVisibility(View.INVISIBLE);
-                selected_alcohol = Alcohol.SOJU;
+                selected_alcohol = 0;
                 image_bottle.setImageResource(R.drawable.icon_big_soju);
                 image_glass.setImageResource(R.drawable.icon_big_soju_glass);
-                bottle = 0;
-                glass = 0;
+//                bottle[0] = 0;
+//                glass[0] = 0;
                 break;
             case R.id.bt_beer:
                 setAlcoholButtonImageToDefault();
@@ -331,21 +351,21 @@ public class ItemActivity extends Activity {
                 layout_glass.setVisibility(View.VISIBLE);
                 text_glass.setVisibility(View.INVISIBLE);
                 text_bottle.setVisibility(View.INVISIBLE);
-                selected_alcohol = Alcohol.BEER;
+                selected_alcohol = 1;
                 image_bottle.setImageResource(R.drawable.icon_big_beer);
                 image_glass.setImageResource(R.drawable.icon_big_beer_glass);
-                bottle = 0;
-                glass = 0;
+//                bottle[1] = 0;
+//                glass[1] = 0;
                 break;
             case R.id.bt_somac:
                 setAlcoholButtonImageToDefault();
                 bt_somac.setBackgroundResource(R.drawable.item_btn_pressed_somac);
                 layout_glass.setVisibility(View.GONE);
                 text_bottle.setVisibility(View.INVISIBLE);
-                selected_alcohol = Alcohol.SOMAC;
+                selected_alcohol = 2;
                 image_bottle.setImageResource(R.drawable.icon_big_somac);
-                bottle = 0;
-                glass = 0;
+//                bottle[2] = 0;
+//                glass[2] = 0;
                 break;
             case R.id.bt_makgeolli:
                 setAlcoholButtonImageToDefault();
@@ -353,21 +373,21 @@ public class ItemActivity extends Activity {
                 layout_glass.setVisibility(View.VISIBLE);
                 text_glass.setVisibility(View.INVISIBLE);
                 text_bottle.setVisibility(View.INVISIBLE);
-                selected_alcohol = Alcohol.MAKGEOLLI;
+                selected_alcohol = 3;
                 image_bottle.setImageResource(R.drawable.icon_big_makgeolli);
                 image_glass.setImageResource(R.drawable.icon_big_makgeolli_bowl);
-                bottle = 0;
-                glass = 0;
+//                bottle[3] = 0;
+//                glass[3] = 0;
                 break;
             case R.id.bt_liquor:
                 setAlcoholButtonImageToDefault();
                 bt_liquor.setBackgroundResource(R.drawable.item_btn_pressed_liquor);
                 layout_glass.setVisibility(View.GONE);
                 text_bottle.setVisibility(View.INVISIBLE);
-                selected_alcohol = Alcohol.LIQUOR;
+                selected_alcohol = 4;
                 image_bottle.setImageResource(R.drawable.icon_big_liquor_glass);
-                bottle = 0;
-                glass = 0;
+//                bottle[4] = 0;
+//                glass[4] = 0;
                 break;
         }
     }
@@ -377,7 +397,7 @@ public class ItemActivity extends Activity {
             //close keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e("Keyboard error", "Could not execute method of the activity");
         }
         switch (view.getId()) {
@@ -418,9 +438,9 @@ public class ItemActivity extends Activity {
         text_bottle = (TextView) findViewById(R.id.text_bottle);
         text_glass = (TextView) findViewById(R.id.text_glass);
 
-        bt_calendar = (ImageButton)findViewById(R.id.bottombar_bt_calendar);
-        bt_diary = (ImageButton)findViewById(R.id.bottombar_bt_diary);
-        bt_stats = (ImageButton)findViewById(R.id.bottombar_bt_stats);
+        bt_calendar = (ImageButton) findViewById(R.id.bottombar_bt_calendar);
+        bt_diary = (ImageButton) findViewById(R.id.bottombar_bt_diary);
+        bt_stats = (ImageButton) findViewById(R.id.bottombar_bt_stats);
     }
 
 }

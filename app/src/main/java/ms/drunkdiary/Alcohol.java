@@ -8,5 +8,6 @@ public enum Alcohol {
     BEER,
     SOMAC,
     MAKGEOLLI,
-    LIQUOR
+    LIQUOR;
+
 }

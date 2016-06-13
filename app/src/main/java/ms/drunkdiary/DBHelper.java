@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by orc12 on 2015-12-22.
  */
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "diaryManager";
 
     //table name
@@ -45,16 +45,16 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.i("SQLite", "Create DB");
 
         //create alcohol table
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_ALCOHOL + "("
-                + ALCOHOL_DATE + " DATE PRIMARY KEY," + ALCOHOL_KIND + " TEXT,"
-                + ALCOHOL_BOTTLE + " INT," + ALCOHOL_GLASS + " INT" + ")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_ALCOHOL + "("
+                + ALCOHOL_DATE + " DATE," + ALCOHOL_KIND + " TEXT,"
+                + ALCOHOL_BOTTLE + " INT," + ALCOHOL_GLASS + " INT)";
+        db.execSQL(CREATE_TABLE);
 
         //create diary table
-        CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_DIARY + "("
+        CREATE_TABLE = "CREATE TABLE " + TABLE_DIARY + "("
                 + DIARY_DATE + " DATE PRIMARY KEY," + DIARY_CONDITION + " TEXT,"
                 + DIARY_NOTE + " INT" + ")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+        db.execSQL(CREATE_TABLE);
 
     }
 
@@ -70,6 +70,29 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // insert table
     public void addItem(DiaryData diaryData) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues alcoholValues = new ContentValues();
+        alcoholValues.put(ALCOHOL_DATE, diaryData.getDateString("-"));
+        alcoholValues.put(ALCOHOL_KIND, diaryData.getAlcohol().name());
+        alcoholValues.put(ALCOHOL_BOTTLE, diaryData.getBottle());
+        alcoholValues.put(ALCOHOL_GLASS, diaryData.getGlass());
+
+        // Inserting Row
+        db.insert(TABLE_ALCOHOL, null, alcoholValues);
+
+        ContentValues diaryValues = new ContentValues();
+        diaryValues.put(DIARY_DATE, diaryData.getDateString("-"));
+        diaryValues.put(DIARY_CONDITION, diaryData.getCondition().name());
+        diaryValues.put(DIARY_NOTE, diaryData.getNote());
+
+        // Inserting Row
+        db.insert(TABLE_DIARY, null, diaryValues);
+
+        db.close(); // Closing database connection
+    }
+
+    public void addItemList(DiaryData diaryData) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues alcoholValues = new ContentValues();
@@ -128,6 +151,71 @@ public class DBHelper extends SQLiteOpenHelper {
                     diaryCursor.getString(2),
                     alcoholCursor.getInt(2),
                     alcoholCursor.getInt(3));
+        }
+        alcoholCursor.close();
+        diaryCursor.close();
+        db.close();
+        return diaryData;
+    }
+
+    public DiaryData[] getItemList(String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        date = date.replace(".", "-");
+
+        //day is smaller then 10
+        if(date.split("[-]")[2].substring(0,1).equals("0")){
+            date = date.substring(0, 8) + date.substring(9);
+        }
+
+        Cursor alcoholCursor = db.query(TABLE_ALCOHOL,
+                new String[]{ALCOHOL_DATE, ALCOHOL_KIND, ALCOHOL_BOTTLE, ALCOHOL_GLASS},
+                ALCOHOL_DATE + "=?",
+                new String[]{String.valueOf(date)}, null, null, null, null);
+        if (alcoholCursor != null) {
+            alcoholCursor.moveToFirst();
+        }
+
+        Cursor diaryCursor = db.query(TABLE_DIARY,
+                new String[]{DIARY_DATE, DIARY_CONDITION, DIARY_NOTE},
+                DIARY_DATE + "=?",
+                new String[]{String.valueOf(date)}, null, null, null, null);
+        if (diaryCursor != null) {
+            diaryCursor.moveToFirst();
+        }
+
+        DiaryData[] diaryData = new DiaryData[5];
+        if (diaryCursor.getCount() != 0) {
+            for(int i = 0; i < alcoholCursor.getCount(); i++) {
+                int alcohol_type = 0;
+                Log.i("SQLite getItem", alcoholCursor.getString(0) + " " + alcoholCursor.getString(1)
+                        + " " + diaryCursor.getString(1) + " " + diaryCursor.getString(2)
+                        + " " + alcoholCursor.getInt(2) + " " + alcoholCursor.getInt(3));
+
+                switch(alcoholCursor.getString(1)){
+                    case "SOJU":
+                        alcohol_type = 0;
+                        break;
+                    case "BEER":
+                        alcohol_type = 1;
+                        break;
+                    case "SOMAC":
+                        alcohol_type = 2;
+                        break;
+                    case "MAKGEOLLI":
+                        alcohol_type = 3;
+                        break;
+                    case "LIQUOR":
+                        alcohol_type = 4;
+                        break;
+                }
+
+                diaryData[alcohol_type] = new DiaryData(alcoholCursor.getString(0),
+                        Condition.valueOf(diaryCursor.getString(1)),
+                        Alcohol.valueOf(alcoholCursor.getString(1)),
+                        diaryCursor.getString(2),
+                        alcoholCursor.getInt(2),
+                        alcoholCursor.getInt(3));
+            }
         }
         alcoholCursor.close();
         diaryCursor.close();

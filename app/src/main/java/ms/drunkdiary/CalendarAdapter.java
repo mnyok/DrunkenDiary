@@ -114,11 +114,14 @@ public class CalendarAdapter extends BaseAdapter {
         } else {
             holder.text_day.setVisibility(View.VISIBLE);
             // mark current day as focused
-            if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
+            if (month.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR)
+                    && month.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH)
+                    && days[position].equals("" + selectedDate.get(Calendar.DAY_OF_MONTH))) {
                 holder.text_day.setBackgroundResource(ms.drunkdiary.R.drawable.ic_today);
             } else {
                 holder.text_day.setBackgroundColor(Color.argb(0, 255, 255, 255));
             }
+
             holder.text_day.setText(days[position]);
 
             //set sunday text color
@@ -157,7 +160,6 @@ public class CalendarAdapter extends BaseAdapter {
                 case LIQUOR:
                     holder.image_alcohol.setImageResource(ms.drunkdiary.R.drawable.ic_liquor);
                     break;
-
             }
         } else {
             holder.image_alcohol.setVisibility(View.INVISIBLE);

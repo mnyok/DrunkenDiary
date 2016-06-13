@@ -33,6 +33,37 @@ public class DiaryData {
         this.glass = glass;
     }
 
+    public DiaryData(String dateString, Condition condition, int alcohol, String note, int bottle, int glass) {
+
+        //calendar's month is start at 0
+        dateString = dateString.replace(".", "-");
+        date.set(Integer.parseInt(dateString.split("[-]")[0]),
+                Integer.parseInt(dateString.split("[-]")[1]) - 1,
+                Integer.parseInt(dateString.split("[-]")[2]));
+
+        this.condition = condition;
+        switch(alcohol){
+            case 0:
+                this.alcohol = Alcohol.SOJU;
+                break;
+            case 1:
+                this.alcohol = Alcohol.BEER;
+                break;
+            case 2:
+                this.alcohol = Alcohol.SOMAC;
+                break;
+            case 3:
+                this.alcohol = Alcohol.MAKGEOLLI;
+                break;
+            case 4:
+                this.alcohol = Alcohol.LIQUOR;
+                break;
+        }
+        this.note = note;
+        this.bottle = bottle;
+        this.glass = glass;
+    }
+
     public String getNote() {
         return note;
     }
